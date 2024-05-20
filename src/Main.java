@@ -9,5 +9,7 @@ public class Main {
         cf.printPriorityQueue();
         cf.printDeque();
         cf.printHashMap();
+        cf.printVector();
+        cf.printStack();
     }
 }

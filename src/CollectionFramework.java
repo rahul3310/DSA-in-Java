@@ -179,4 +179,43 @@ public class CollectionFramework {
         System.out.println("HashMap "+map);
     }
 
+    //Vector in Java
+    /**
+     * Vector is like the dynamic array which can grow or shrink its size.
+     * It is recommended to use the Vector class in the thread-safe implementation only.
+     * If you don't need to use the thread-safe implementation, you should use the ArrayList, the ArrayList will perform better in such case.
+     */
+
+    public void printVector(){
+        Vector<String> v = new Vector<>();
+        v.add("Rahul");
+        v.add("Rohit");
+        v.add("Mohit");
+        v.add("Ravi");
+        v.addElement("Sachin");
+        v.addElement("Sahil");
+
+        System.out.println("Vector "+v);
+    }
+
+    //Stack in Java
+    /**
+     * The stack is a linear data structure that is used to store the collection of objects.
+     * It is based on Last-In-First-Out (LIFO). Java collection framework provides many interfaces and classes to store the collection of objects.
+     * One of them is the Stack class that provides different operations such as push, pop, search, etc.
+     */
+
+    public void printStack(){
+        Stack<Integer> stack = new Stack<>();
+        stack.push(10);
+        stack.push(20);
+        stack.push(30);
+        stack.push(40);
+        stack.push(50);
+
+        System.out.println("Stack "+stack);
+
+        stack.pop();
+        System.out.println("After pop "+stack);
+    }
 }
