@@ -12,7 +12,24 @@ public class CollectionFramework {
      * ArrayList is better to access data whereas LinkedList is better to manipulate data.
      **/
 
+    public void printArrayList(){
+        ArrayList<String> list=new ArrayList<String>();//Creating arraylist
+        list.add("Mango");//Adding object in arraylist
+        list.add("Apple");
+        list.add("Banana");
+        list.add("Grapes");
+        //Printing the arraylist object
+        System.out.println("ArrayList "+list);
+    }
 
+    public void printLinkedList() {
+        LinkedList<String> linkedList=new LinkedList<String>();
+        linkedList.add("Ravi");
+        linkedList.add("Vijay");
+        linkedList.add("Ravi");
+        linkedList.add("Ajay");
+        System.out.println("LinkedList "+linkedList);
+    }
     //Sets Interface Java Collections
 
     /**
@@ -161,4 +178,5 @@ public class CollectionFramework {
         map.put(6,"Amit");
         System.out.println("HashMap "+map);
     }
+
 }
