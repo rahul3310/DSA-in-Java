@@ -1,4 +1,5 @@
 import classes.CollectionFramework;
+import classes.Hashing;
 import classes.Recursion;
 
 import java.util.Arrays;
@@ -7,7 +8,7 @@ import java.util.HashSet;
 public class Main {
     public static void main(String[] args) {
         /**Collection Framework ------------------------------->>>>*/
-        CollectionFramework cf = new CollectionFramework();
+      /*  CollectionFramework cf = new CollectionFramework();
         cf.printArrayList();
         System.out.println();
 
@@ -41,10 +42,10 @@ public class Main {
         System.out.println();
 
         cf.printHashTable();
-        System.out.println();
+        System.out.println();*/
 
         /**Recursion Problems------------------->>*/
-        Recursion r = new Recursion();
+/*        Recursion r = new Recursion();
         r.printNNumbers(1, 10);
         System.out.println();
         r.printNumber(10);
@@ -60,7 +61,11 @@ public class Main {
         String s = "ABCBA";
         System.out.println("String is Palindrome " + r.isStringPalindrome(0, s));
 
-        System.out.println("fibonacci "+ r.fibonacci(5));
+        System.out.println("fibonacci "+ r.fibonacci(5));*/
+
+        /**Hashing Technique---------------------->*/
+        Hashing hs = new Hashing();
+        hs.hashingTechnique();
 
 
     }
