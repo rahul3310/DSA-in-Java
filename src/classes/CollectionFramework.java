@@ -1,3 +1,5 @@
+package classes;
+
 import java.util.*;
 
 public class CollectionFramework {
@@ -154,7 +156,7 @@ public class CollectionFramework {
 
     //Java Map Interface
     /**
-     * Map and sortedMap are two interfaces inplemented by Hashmap , linkedHashmap,treemap
+     * Map and sortedMap are two interfaces implemented by Hashmap , linkedHashmap,treemap
      * A Map is useful if you have to search, update or delete elements on the basis of a key.
      * A Map doesn't allow duplicate keys, but you can have duplicate values. HashMap and LinkedHashMap allow null keys and values,
      * but TreeMap doesn't allow any null key or value.
@@ -179,6 +181,84 @@ public class CollectionFramework {
         System.out.println("HashMap "+map);
     }
 
+    //LinkedHashMap
+    /**
+     *Java LinkedHashMap contains values based on the key.
+     * Java LinkedHashMap contains unique elements.
+     * Java LinkedHashMap may have one null key and multiple null values.
+     * Java LinkedHashMap is non synchronized.
+     * Java LinkedHashMap maintains insertion order.
+     * The initial default capacity of Java HashMap class is 16 with a load factor of 0.75.
+     */
+
+    public void printLinkedHashMap(){
+        LinkedHashMap<Integer, String> map = new LinkedHashMap<Integer, String>();
+        map.put(100,"Amit");
+        map.put(101,"Vijay");
+        map.put(103,"Vijay");
+        map.put(102,"Rahul");
+
+        System.out.println("LinkedHashMap "+map);
+        //Fetching key
+        System.out.println("Keys: "+map.keySet());
+        //Fetching value
+        System.out.println("Values: "+map.values());
+        //Fetching key-value pair
+        System.out.println("Key-Value pairs: "+map.entrySet());
+    }
+
+    //TreeMap
+    /**
+     * Java TreeMap contains values based on the key.
+     * It implements the NavigableMap interface and extends AbstractMap class.
+     * Java TreeMap contains only unique elements.
+     * Java TreeMap cannot have a null key but can have multiple null values.
+     * TreeMap cannot contain any null key.
+     * Java TreeMap is non synchronized.
+     * Java TreeMap maintains ascending order.
+     */
+    public void printTreeMap(){
+        TreeMap<Integer,String> map=new TreeMap<Integer,String>();
+        map.put(100,"Amit");
+        map.put(102,"Ravi");
+        map.put(101,"Vijay");
+        map.put(103,"Rahul");
+        System.out.println("Before invoking remove() method");
+        for(Map.Entry m:map.entrySet())
+        {
+            System.out.println(m.getKey()+" "+m.getValue());
+        }
+        map.remove(102);
+        System.out.println("After invoking remove() method");
+        for(Map.Entry m:map.entrySet())
+        {
+            System.out.println(m.getKey()+" "+m.getValue());
+        }
+    }
+
+    //HashTable
+    /**
+     * A Hashtable is an array of a list. Each list is known as a bucket.
+     * The position of the bucket is identified by calling the hashcode() method.
+     * A Hashtable contains values based on the key.
+     * Java Hashtable class contains unique elements.
+     * Java Hashtable class doesn't allow null key or value.
+     * Java Hashtable class is synchronized.
+     * The initial default capacity of Hashtable class is 11 whereas loadFactor is 0.75.
+     * public class Hashtable<K,V> extends Dictionary<K,V> implements Map<K,V>, Cloneable, Serializable
+     */
+    public void printHashTable(){
+        Hashtable<Integer,String> hm=new Hashtable<Integer,String>();
+
+        hm.put(100,"Amit");
+        hm.put(102,"Ravi");
+        hm.put(101,"Vijay");
+        hm.put(103,"Rahul");
+        System.out.println("HashTable  ");
+        for(Map.Entry m:hm.entrySet()){
+            System.out.println(m.getKey()+" "+m.getValue());
+        }
+    }
     //Vector in Java
     /**
      * Vector is like the dynamic array which can grow or shrink its size.
