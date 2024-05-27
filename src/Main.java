@@ -64,8 +64,11 @@ public class Main {
         System.out.println("fibonacci "+ r.fibonacci(5));*/
 
         /**Hashing Technique---------------------->*/
+        int [] arr = {10,5,10,15,5,10};
         Hashing hs = new Hashing();
-        hs.hashingTechnique();
+        //hs.hashingTechnique();
+        hs.elementFrequencyInArray(arr);
+        hs.minMaxFrequencyInArray(arr);
 
 
     }

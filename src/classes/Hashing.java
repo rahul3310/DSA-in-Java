@@ -1,5 +1,7 @@
 package classes;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Scanner;
 
 public class Hashing {
@@ -36,6 +38,51 @@ public class Hashing {
             System.out.println("Frequency of "+q+" is "+ hash[number]);
             q--;
         }
+    }
+
+    public void elementFrequencyInArray(int [] arr){
+        Map<Integer,Integer> map  =  new HashMap<>();
+        int n = arr.length;
+        for (int i = 0; i < n; i++) {
+            if (map.containsKey(arr[i])){
+                map.put(arr[i],map.get(arr[i])+1);
+            }else{
+                map.put(arr[i],1);
+            }
+        }
+
+        System.out.println("Frequency of Elements "+map);
+    }
+
+    public void minMaxFrequencyInArray(int [] arr){
+        Map<Integer,Integer> map  =  new HashMap<>();
+        int n = arr.length;
+        for (int i = 0; i < n; i++) {
+            if (map.containsKey(arr[i])){
+                map.put(arr[i],map.get(arr[i])+1);
+            }else{
+                map.put(arr[i],1);
+            }
+        }
+        int maxFreq = 0, minFreq = n;
+        int maxEle = 0, minEle = 0;
+        // Traverse through map and find the elements
+        for (Map.Entry<Integer, Integer> entry : map.entrySet()) {
+            int count = entry.getValue();
+            int element = entry.getKey();
+
+            if (count > maxFreq) {
+                maxEle = element;
+                maxFreq = count;
+            }
+            if (count < minFreq) {
+                minEle = element;
+                minFreq = count;
+            }
+        }
+
+        System.out.println("Highest Frequency Element "+maxEle + "->"+maxFreq);
+        System.out.println("Lowest Frequency Element "+minEle+"->"+minFreq);
     }
 
 }
