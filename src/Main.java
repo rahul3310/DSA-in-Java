@@ -1,6 +1,7 @@
 import classes.CollectionFramework;
 import classes.Hashing;
 import classes.Recursion;
+import classes.SortingAlgorithm;
 
 import java.util.Arrays;
 import java.util.HashSet;
@@ -64,11 +65,18 @@ public class Main {
         System.out.println("fibonacci "+ r.fibonacci(5));*/
 
         /**Hashing Technique---------------------->*/
-        int [] arr = {10,5,10,15,5,10};
-        Hashing hs = new Hashing();
-        //hs.hashingTechnique();
+        int[] arr = {64,25,12,22,11};
+       /* Hashing hs = new Hashing();
+        hs.hashingTechnique();
         hs.elementFrequencyInArray(arr);
-        hs.minMaxFrequencyInArray(arr);
+        hs.minMaxFrequencyInArray(arr);*/
+
+        SortingAlgorithm s = new SortingAlgorithm();
+         //s.selectionSort(arr);
+        //s.bubbleSort(arr);
+        //s.insertionSort(arr);
+        s.mergeSort(arr,0, arr.length-1);
+        s.printArray(arr);
 
 
     }
