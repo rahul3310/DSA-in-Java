@@ -186,7 +186,8 @@ public class SortingAlgorithm {
         return j;
     }
 
-    private void swapArrayElement(int[] arr, int i, int j) {
+
+    public void swapArrayElement(int[] arr, int i, int j) {
         int temp = arr[i];
         arr[i] = arr[j];
         arr[j] = temp;

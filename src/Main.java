@@ -77,12 +77,18 @@ public class Main {
        // s.quickSort(arr,0, arr.length-1);
        // s.printArray(arr);
 
-        /**Array Elements ------>>>*/
+        /** Array Elements ------>>>*/
         int[] arr = {64,25,12,22,11};
+        int [] rotate = {1,2,3,4,5};
         ArraysProblems ap = new ArraysProblems();
         System.out.println("Largest element " + ap.largestElement(arr));
         System.out.println("Second Largest element " + ap.secondLargestElement(arr));
         System.out.println("Array is sorted " + ap.checkSortedArray(arr));
+        //ap.removeDuplicate2(duplicate);
+        //ap.removeDuplicateOptimalSolution(duplicate);
+        ap.leftRotateArray(rotate);
+
+
 
     }
 
