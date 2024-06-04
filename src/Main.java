@@ -1,7 +1,4 @@
-import classes.CollectionFramework;
-import classes.Hashing;
-import classes.Recursion;
-import classes.SortingAlgorithm;
+import classes.*;
 
 import java.util.Arrays;
 import java.util.HashSet;
@@ -65,19 +62,27 @@ public class Main {
         System.out.println("fibonacci "+ r.fibonacci(5));*/
 
         /**Hashing Technique---------------------->*/
-        int[] arr = {64,25,12,22,11};
        /* Hashing hs = new Hashing();
         hs.hashingTechnique();
         hs.elementFrequencyInArray(arr);
         hs.minMaxFrequencyInArray(arr);*/
 
-        SortingAlgorithm s = new SortingAlgorithm();
+       // SortingAlgorithm s = new SortingAlgorithm();
          //s.selectionSort(arr);
         //s.bubbleSort(arr);
         //s.insertionSort(arr);
-        s.mergeSort(arr,0, arr.length-1);
-        s.printArray(arr);
+        //s.mergeSort(arr,0, arr.length-1);
+       // s.bubbleSortRecursive(arr, arr.length);
+        //s.insertionSortRecursive(arr,0, arr.length);
+       // s.quickSort(arr,0, arr.length-1);
+       // s.printArray(arr);
 
+        /**Array Elements ------>>>*/
+        int[] arr = {64,25,12,22,11};
+        ArraysProblems ap = new ArraysProblems();
+        System.out.println("Largest element " + ap.largestElement(arr));
+        System.out.println("Second Largest element " + ap.secondLargestElement(arr));
+        System.out.println("Array is sorted " + ap.checkSortedArray(arr));
 
     }
 

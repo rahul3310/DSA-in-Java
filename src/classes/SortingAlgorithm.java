@@ -43,6 +43,20 @@ public class SortingAlgorithm {
         printArray(arr);
     }
 
+    public void bubbleSortRecursive(int [] arr,int n){
+        if (n==1) return;
+        int didSwap = 0;
+        for (int i = 0;i<n-1;i++){
+            if (arr[i]>arr[i+1]){
+                swapArrayElement(arr,i,i+1);
+                didSwap = 1;
+            }
+        }
+
+        if (didSwap == 0) return;
+        bubbleSortRecursive(arr,n-1);
+    }
+
 
     /**
      * In insertion sort we assume fist element as sorted and then set index 1 as key
@@ -63,6 +77,18 @@ public class SortingAlgorithm {
         }
 
         printArray(arr);
+    }
+
+
+    public void insertionSortRecursive(int [] arr,int start , int n){
+        if (start == n) return;
+        int key  = arr[start];
+        int j = start;
+        while (j>0 && arr[j-1]>arr[j]){
+            swapArrayElement(arr,j-1,j);
+            j--;
+        }
+        insertionSortRecursive(arr,start+1,n);
     }
 
     /**
@@ -127,6 +153,38 @@ public class SortingAlgorithm {
 
     }
 
+
+
+    /**
+     * Choose pivot index or value
+     * Place all elements smaller than pivot to left side and greater are right side of pivot
+     * Repeat the above step until the array will not be sorted
+     * Pivot can be 1st , last or any of the array element
+     * */
+
+    public void quickSort(int []arr,int start,int end){
+        if (start<end) {
+            int pivotIndex = partition(arr, start, end);
+            quickSort(arr,start,pivotIndex-1);
+            quickSort(arr,pivotIndex+1,end);
+        }
+    }
+    private int partition(int []arr,int start,int end){
+        int i = start,j=end;
+        int pivot = arr[start];
+        while (i<j){
+            while (arr[i]<=pivot && i<end){
+                i++;
+            }
+            while (arr[j]<pivot && j>start){
+                j--;
+            }
+
+            if (i<j) swapArrayElement(arr,i,j);
+        }
+        swapArrayElement(arr,start,j);
+        return j;
+    }
 
     private void swapArrayElement(int[] arr, int i, int j) {
         int temp = arr[i];
