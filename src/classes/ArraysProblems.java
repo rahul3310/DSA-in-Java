@@ -95,4 +95,26 @@ public class ArraysProblems extends SortingAlgorithm {
 
         printArray(arr);
     }
+
+    public void leftRotateKSteps(int [] arr,int k){
+        int [] temp = new int[k];
+        int n = arr.length;
+        for (int i = 0; i < k; i++) {
+            temp[i] = arr[i];
+        }
+
+        int j = 0;
+        for (int i = n-k-1; i < n; i++) {
+            arr[j] = arr[i];
+            j++;
+        }
+        int s = 0;
+        while (j<n && s<k){
+            arr[j] = temp[s];
+            j++;
+            s++;
+        }
+
+        printArray(arr);
+    }
 }

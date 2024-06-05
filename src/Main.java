@@ -86,7 +86,8 @@ public class Main {
         System.out.println("Array is sorted " + ap.checkSortedArray(arr));
         //ap.removeDuplicate2(duplicate);
         //ap.removeDuplicateOptimalSolution(duplicate);
-        ap.leftRotateArray(rotate);
+       // ap.leftRotateArray(rotate);
+        ap.leftRotateKSteps(rotate,2);
 
 
 
