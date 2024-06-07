@@ -81,13 +81,16 @@ public class Main {
         int[] arr = {64,25,12,22,11};
         int [] rotate = {1,2,3,4,5};
         ArraysProblems ap = new ArraysProblems();
-        System.out.println("Largest element " + ap.largestElement(arr));
-        System.out.println("Second Largest element " + ap.secondLargestElement(arr));
-        System.out.println("Array is sorted " + ap.checkSortedArray(arr));
+       // System.out.println("Largest element " + ap.largestElement(arr));
+       // System.out.println("Second Largest element " + ap.secondLargestElement(arr));
+       // System.out.println("Array is sorted " + ap.checkSortedArray(arr));
         //ap.removeDuplicate2(duplicate);
         //ap.removeDuplicateOptimalSolution(duplicate);
        // ap.leftRotateArray(rotate);
-        ap.leftRotateKSteps(rotate,2);
+        //ap.leftRotateKSteps(rotate,2);
+       // ap.leftRotateKStepsOptimal(rotate,12);
+        int [] moveZero = {1,0,2,3,0,4,0,1};
+        ap.moveZeroToEnd(moveZero);
 
 
 
