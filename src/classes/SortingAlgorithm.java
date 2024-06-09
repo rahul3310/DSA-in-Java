@@ -197,5 +197,6 @@ public class SortingAlgorithm {
         for (int j : arr) {
             System.out.print(j + " ");
         }
+        System.out.println();
     }
 }

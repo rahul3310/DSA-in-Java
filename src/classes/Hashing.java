@@ -85,4 +85,60 @@ public class Hashing {
         System.out.println("Lowest Frequency Element "+minEle+"->"+minFreq);
     }
 
+    public void mergeSort(int[] arr, int start, int end) {
+        if (start < end) {
+            int mid = start + (end - start) / 2;
+            mergeSort(arr, start, mid);
+            mergeSort(arr, mid + 1, end);
+            merge(arr, start, mid, end);
+        }
+    }
+
+    private void merge(int[] arr, int start, int mid, int end) {
+        int n1 = mid - start + 1;
+        int n2 = end - mid;
+
+        int[] leftArr = new int[n1];
+        int[] rightArr = new int[n2];
+
+        // Copy data into the temporary arrays
+        for (int i = 0; i < n1; i++) {
+            leftArr[i] = arr[start + i];
+        }
+
+        for (int j = 0; j < n2; j++) {
+            rightArr[j] = arr[mid + 1 + j];
+        }
+
+        // Merge the arrays in sorted order
+        int i = 0, j = 0;
+        int k = start;  // Initial index of the merged subarray
+
+        while (i < n1 && j < n2) {
+            if (leftArr[i] <= rightArr[j]) {  // Change made here: '<' to '<=' to maintain stability
+                arr[k] = leftArr[i];
+                i++;
+            } else {
+                arr[k] = rightArr[j];
+                j++;
+            }
+            k++;
+        }
+
+        // Copy remaining elements of leftArr, if any
+        while (i < n1) {
+            arr[k] = leftArr[i];
+            i++;
+            k++;
+        }
+
+        // Copy remaining elements of rightArr, if any
+        while (j < n2) {
+            arr[k] = rightArr[j];
+            j++;
+            k++;
+        }
+    }
+
+
 }

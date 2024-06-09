@@ -43,7 +43,7 @@ public class Main {
         System.out.println();*/
 
         /**Recursion Problems------------------->>*/
-/*        Recursion r = new Recursion();
+       /*Recursion r = new Recursion();
         r.printNNumbers(1, 10);
         System.out.println();
         r.printNumber(10);
@@ -67,33 +67,46 @@ public class Main {
         hs.elementFrequencyInArray(arr);
         hs.minMaxFrequencyInArray(arr);*/
 
-       // SortingAlgorithm s = new SortingAlgorithm();
-         //s.selectionSort(arr);
+        // SortingAlgorithm s = new SortingAlgorithm();
+        //s.selectionSort(arr);
         //s.bubbleSort(arr);
         //s.insertionSort(arr);
         //s.mergeSort(arr,0, arr.length-1);
-       // s.bubbleSortRecursive(arr, arr.length);
+        // s.bubbleSortRecursive(arr, arr.length);
         //s.insertionSortRecursive(arr,0, arr.length);
-       // s.quickSort(arr,0, arr.length-1);
-       // s.printArray(arr);
+        // s.quickSort(arr,0, arr.length-1);
+        // s.printArray(arr);
 
         /** Array Elements ------>>>*/
-        int[] arr = {64,25,12,22,11};
-        int [] rotate = {1,2,3,4,5};
+    /*    int[] arr = {64, 25, 12, 22, 11};
+        int[] rotate = {1, 2, 3, 4, 5};*/
         ArraysProblems ap = new ArraysProblems();
-       // System.out.println("Largest element " + ap.largestElement(arr));
-       // System.out.println("Second Largest element " + ap.secondLargestElement(arr));
-       // System.out.println("Array is sorted " + ap.checkSortedArray(arr));
+        // System.out.println("Largest element " + ap.largestElement(arr));
+        // System.out.println("Second Largest element " + ap.secondLargestElement(arr));
+        // System.out.println("Array is sorted " + ap.checkSortedArray(arr));
         //ap.removeDuplicate2(duplicate);
         //ap.removeDuplicateOptimalSolution(duplicate);
-       // ap.leftRotateArray(rotate);
+        // ap.leftRotateArray(rotate);
         //ap.leftRotateKSteps(rotate,2);
-       // ap.leftRotateKStepsOptimal(rotate,12);
-        int [] moveZero = {1,0,2,3,0,4,0,1};
+        // ap.leftRotateKStepsOptimal(rotate,12);
+       /* int[] moveZero = {1, 0, 2, 3, 0, 4, 0, 1};
         ap.moveZeroToEnd(moveZero);
+        System.out.println("Key is at index " + ap.linearSearch(arr, 12));*/
 
+       /* int [] arr1 = {1,2,3,4,5};
+        int [] arr2 = {2,3,4,4,5};
+        //ap.unionOfArrays(arr1,arr2);
+        ap.unionOfArrayMethod(arr1,arr2);*/
 
+        /*int [] arr = {1,2,4,5};
 
+        System.out.println("Missing number "+ap.missingNumber(arr));
+        System.out.println("Missing number method2 "+ap.missingNumberMethod2(arr));*/
+
+        int [] ones = {1, 1, 0, 2, 2, 1};
+        System.out.println("Maximum number of consecutive ones "+ ap.maximumConsecutiveOnes(ones));
+
+        ap.elementFrequency(ones);
     }
 
 
@@ -141,4 +154,5 @@ public class Main {
         }
 
     }
+
 }
