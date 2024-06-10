@@ -1,6 +1,7 @@
 package classes;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.HashSet;
 
@@ -218,38 +219,38 @@ public class ArraysProblems extends SortingAlgorithm {
 
     public int missingNumber(int[] arr) {
         int n = arr.length;
-        int [] hash = new int[n+1];
-        for (int i = 0; i < n-1; i++) {
+        int[] hash = new int[n + 1];
+        for (int i = 0; i < n - 1; i++) {
             hash[arr[i]]++;
         }
 
-        for (int j =1;j<hash.length;j++){
-            if (hash[j]==0){
+        for (int j = 1; j < hash.length; j++) {
+            if (hash[j] == 0) {
                 return j;
             }
         }
         return -1;
     }
 
-    public int missingNumberMethod2(int [] arr){
+    public int missingNumberMethod2(int[] arr) {
         int missingNumber = -1;
         int n = arr.length;
 
-        int i=0,j=1;
-        while (j<n){
-            j=i+1;
-            if(arr[j]==arr[i]+1){
+        int i = 0, j = 1;
+        while (j < n) {
+            j = i + 1;
+            if (arr[j] == arr[i] + 1) {
                 i++;
-            }else{
-               missingNumber = arr[i]+1;
-               break;
+            } else {
+                missingNumber = arr[i] + 1;
+                break;
             }
         }
 
         return missingNumber;
     }
 
-    public int missingNumberMethod3(int [] arr){
+    public int missingNumberMethod3(int[] arr) {
         int N = arr.length;
         int xor1 = 0, xor2 = 0;
 
@@ -262,8 +263,8 @@ public class ArraysProblems extends SortingAlgorithm {
         return (xor1 ^ xor2);
     }
 
-    public int maximumConsecutiveOnes(int [] arr){
-        int count = 0,max =0;
+    public int maximumConsecutiveOnes(int[] arr) {
+        int count = 0, max = 0;
         for (int j : arr) {
             if (j == 1) {
                 count++;
@@ -277,26 +278,110 @@ public class ArraysProblems extends SortingAlgorithm {
         return max;
     }
 
-    public void elementFrequency(int []arr){
+    public void elementFrequency(int[] arr) {
         int ones = -1;
         int twice = -1;
         int n = arr.length;
-        int [] hash = new int[n+1];
+        int[] hash = new int[n + 1];
 
-        for (int i = 0; i < n-1; i++) {
+        for (int i = 0; i < n - 1; i++) {
             hash[arr[i]]++;
         }
 
-        for (int j = 0;j<hash.length;j++){
-            if (hash[j]==1){
+        for (int j = 0; j < hash.length; j++) {
+            if (hash[j] == 1) {
                 ones = j;
-            }else if (hash[j]==2){
+            } else if (hash[j] == 2) {
                 twice = j;
             }
         }
 
-        System.out.println("Number present one times "+ones);
-        System.out.println("Number present two times "+twice);
+        System.out.println("Number present one times " + ones);
+        System.out.println("Number present two times " + twice);
+    }
+
+    public int longestSubArray(int[] arr, int k) {
+        int len = 0;
+        int sum = 0;
+        int n = arr.length;
+        for (int i = 0; i < n; i++) {
+            sum = 0;
+            for (int j = i; j < n; j++) {
+                sum += arr[j];
+                if (sum == k) len = Math.max(len, j - i + 1);
+            }
+        }
+        return len;
+    }
+
+    //This method is only for non-negative numbers ------>>
+    public int longestSubArrayMethod2(int[] arr, int k) {
+        int len = 0, left = 0, right = 0, sum = arr[0];
+        int n = arr.length;
+
+        while (right < n) {
+            while (left <= right && sum > k) {
+                sum -= arr[left];
+                left++;
+            }
+
+            if (sum == k) len = Math.max(len, right - left + 1);
+            right++;
+            if (right < n) sum += arr[right];
+        }
+
+        return len;
+    }
+
+
+    //This is for positive and negative numbers
+    public int longestSubArrayMethod3(int[] arr, int k) {
+        int maxLen = 0;
+        int sum = 0;
+        int n = arr.length;
+        HashMap<Long, Long> preSum = new HashMap<Long, Long>();
+
+        for (int i = 0; i < n; i++) {
+            sum += arr[i];
+
+            if (sum == k) maxLen = Math.max(maxLen, i + 1);
+
+            long rem = k - sum;
+
+            if (preSum.containsKey(rem)) {
+                int len = (int) (i - preSum.get(rem));
+                maxLen = Math.max(maxLen, len);
+
+            }
+
+            //Finally, update the map checking the conditions:
+            if (!preSum.containsKey(sum)) {
+                preSum.put((long) sum, (long) i);
+            }
+
+        }
+        return maxLen;
+    }
+
+    public void TwoSum(int[] arr, int targetSum) {
+        int n = arr.length;
+        Arrays.sort(arr);
+        int left = 0, right = n - 1;
+        ArrayList<Integer> ans = new ArrayList<>();
+
+        while (left < right) {
+            int sum = arr[left] + arr[right];
+            if (sum == targetSum) {
+                ans.add(arr[left]);
+                ans.add(arr[right]);
+            } else if (sum < targetSum) {
+                left++;
+            } else {
+                right--;
+            }
+        }
+
+        System.out.println(ans);
     }
 
     public void reverseArray(int[] arr, int start, int end) {
