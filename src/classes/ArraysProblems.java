@@ -1,9 +1,6 @@
 package classes;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.HashSet;
+import java.util.*;
 
 public class ArraysProblems extends SortingAlgorithm {
 
@@ -382,6 +379,49 @@ public class ArraysProblems extends SortingAlgorithm {
         }
 
         System.out.println(ans);
+    }
+
+    //Dutch National Flag Algorithm to sort array of 0,1 & 2's-------->>
+    //In this Algorithm we have three pointers low , mid & high
+
+    public void dutchNationalFlagAlgo(int[] arr) {
+        int n = arr.length;
+        int low = 0, mid = 0, high = n - 1;
+
+        while (mid < high) {
+            if (arr[mid] == 0) {
+                swapArrayElement(arr, low, mid);
+                low++;
+                mid++;
+            } else if (arr[mid] == 1) {
+                mid++;
+            } else {
+                swapArrayElement(arr, mid, high);
+                high--;
+            }
+        }
+
+        printArray(arr);
+    }
+
+    //Find element occurs more than n/2 times in Array
+    public void majorityElement(int[] arr) {
+        int majorityElement = -1;
+        int n = arr.length;
+        HashMap<Integer, Integer> map = new HashMap<>();
+
+        for (int j : arr) {
+            int value = map.getOrDefault(j, 0);
+            map.put(j, value+1);
+        }
+
+        for (Map.Entry<Integer, Integer> it : map.entrySet()) {
+            if (it.getValue() > n / 2) {
+                majorityElement = it.getKey();
+            }
+        }
+
+        System.out.println("Majority element is " + majorityElement);
     }
 
     public void reverseArray(int[] arr, int start, int end) {
