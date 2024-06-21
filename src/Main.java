@@ -110,14 +110,20 @@ public class Main {
       /*  int [] array = {2,3,5};
         System.out.println("Longest SubArray : "+ ap.longestSubArrayMethod2(array,5));*/
 
-//        int [] twoSum  = {2, 6, 5, 8, 11};
-//        ap.TwoSum(twoSum,14);
+       /* int [] twoSum  = {2, 6, 5, 8, 11};
+        ap.TwoSum(twoSum,14);*/
+     /*   int [] arr012 = {2,0,2,1,1,0};
+        ap.sortZerosOnesTwosArray(arr012);
+
 
         int[] dArr = {2, 0, 2, 1, 1, 0};
         ap.dutchNationalFlagAlgo(dArr);
 
         int[] nums = {2, 2, 1, 1, 1, 2, 2};
         ap.majorityElement(nums);
+        ap.mooresVotingAlgorithm(nums);*/
+        int[] arrK = { -2, 1, -3, 4, -1, 2, 1, -5, 4};
+        ap.maximumSumSubArray(arrK);
 
 
     }

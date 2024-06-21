@@ -41,7 +41,6 @@ public class ArraysProblems extends SortingAlgorithm {
         return isSorted;
     }
 
-
     public void removeDuplicate(int[] arr) {
         int n = arr.length;
         int[] result = new int[n];
@@ -383,7 +382,6 @@ public class ArraysProblems extends SortingAlgorithm {
 
     //Dutch National Flag Algorithm to sort array of 0,1 & 2's-------->>
     //In this Algorithm we have three pointers low , mid & high
-
     public void dutchNationalFlagAlgo(int[] arr) {
         int n = arr.length;
         int low = 0, mid = 0, high = n - 1;
@@ -412,7 +410,7 @@ public class ArraysProblems extends SortingAlgorithm {
 
         for (int j : arr) {
             int value = map.getOrDefault(j, 0);
-            map.put(j, value+1);
+            map.put(j, value + 1);
         }
 
         for (Map.Entry<Integer, Integer> it : map.entrySet()) {
@@ -420,8 +418,103 @@ public class ArraysProblems extends SortingAlgorithm {
                 majorityElement = it.getKey();
             }
         }
-
         System.out.println("Majority element is " + majorityElement);
+    }
+
+    /**
+     * @Moore's Voting Algorithm
+     * Initialize 2 variables:
+     * Count –  for tracking the count of element
+     * Element – for which element we are counting
+     * Traverse through the given array.
+     * If Count is 0 then store the current element of the array as Element.
+     * If the current element and Element are the same increase the Count by 1.
+     * If they are different decrease the Count by 1.
+     * The integer present in Element should be the result we are expecting
+     */
+
+    public void mooresVotingAlgorithm(int[] arr) {
+        int majorityEle = -1;
+        int count = 0;
+        for (int i = 0; i < arr.length; i++) {
+            if (count == 0) {
+                count = 1;
+                majorityEle = arr[i];
+            } else if (majorityEle == arr[i]) {
+                count++;
+            } else {
+                count--;
+            }
+        }
+
+        int count1 = 0;
+        for (int i = 0; i < arr.length; i++) {
+            if (majorityEle == arr[i]) count1++;
+        }
+
+        if (count1 > arr.length / 2) {
+            System.out.println("Majority Element " + majorityEle);
+        } else {
+            System.out.println("Majority Element is -1");
+        }
+
+    }
+
+    //Kadden's Algorithm to find maximum sum of sub-array
+    public void maximumSumSubArray(int[] arr) {
+        int sum = 0, maxSum = arr[0];
+        int start = 0;
+        int ansStart = -1, ansEnd = -1;
+
+        for (int i = 0; i < arr.length; i++) {
+
+            if (sum == 0) start = i;
+
+            sum += arr[i];
+
+            if (sum > maxSum) {
+                maxSum = sum;
+                ansStart = start;
+                ansEnd = i;
+            }
+
+            if (sum < 0) sum = 0;
+
+        }
+
+        for (int i = ansStart; i <= ansEnd; i++) {
+            System.out.print(arr[i] + " ");
+        }
+        System.out.println();
+        System.out.println("Maximum sum " + maxSum);
+    }
+
+    public void sortZerosOnesTwosArray(int[] arr) {
+        int count0 = 0, count1 = 0, count2 = 0;
+        int n = arr.length;
+
+        for (int j : arr) {
+            if (j == 0) {
+                count0++;
+            } else if (j == 1) {
+                count1++;
+            } else {
+                count2++;
+            }
+        }
+
+
+        for (int i = 0; i < count0; i++) {
+            arr[i] = 0;
+        }
+        for (int i = 0; i < count1; i++) {
+            arr[i] = 1;
+        }
+        for (int i = 0; i < count2; i++) {
+            arr[i] = 2;
+        }
+
+        printArray(arr);
     }
 
     public void reverseArray(int[] arr, int start, int end) {
