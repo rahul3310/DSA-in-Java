@@ -4,6 +4,7 @@ import java.util.*;
 
 public class ArraysProblems extends SortingAlgorithm {
 
+    /**find the largest element of the array*/
     public int largestElement(int[] arr) {
         int maxElement = Integer.MIN_VALUE;
         for (int i = 0; i < arr.length - 1; i++) {
@@ -15,6 +16,7 @@ public class ArraysProblems extends SortingAlgorithm {
         return maxElement;
     }
 
+    /**find the second-largest element of the array*/
     public int secondLargestElement(int[] arr) {
         int maxElement = Integer.MIN_VALUE;
         int secondMaxElement = Integer.MIN_VALUE;
@@ -30,6 +32,8 @@ public class ArraysProblems extends SortingAlgorithm {
         return secondMaxElement;
     }
 
+    /**Check the give array is sorted or not*/
+    //Here we do if any arr[i] < arr[i-1] than not sorted
     public boolean checkSortedArray(int[] arr) {
         boolean isSorted = true;
         for (int i = 1; i < arr.length - 1; i++) {
@@ -41,6 +45,8 @@ public class ArraysProblems extends SortingAlgorithm {
         return isSorted;
     }
 
+   /**Remove duplicate elements from the Array given */
+   //Here we take an extra space (temp array) and added unique element the temp array.
     public void removeDuplicate(int[] arr) {
         int n = arr.length;
         int[] result = new int[n];
@@ -56,6 +62,7 @@ public class ArraysProblems extends SortingAlgorithm {
         printArray(result);
     }
 
+    //Using Set (Because set does not contain duplicates and not maintained order)
     public void removeDuplicate2(int[] arr) {
         int n = arr.length;
         HashSet<Integer> set = new HashSet<>();
@@ -69,6 +76,7 @@ public class ArraysProblems extends SortingAlgorithm {
         }
     }
 
+    //Using swapping along with Two pointer approach place all duplicate element at the end of the array
     public void removeDuplicateOptimalSolution(int[] arr) {
         int n = arr.length;
         int i = 0;
@@ -85,6 +93,9 @@ public class ArraysProblems extends SortingAlgorithm {
         printArray(arr);
     }
 
+    /**Left rotate the given array*/
+    //Store the first element in a temp space
+    //Now move each element to step one left
     public void leftRotateArray(int[] arr) {
         int n = arr.length;
         int temp = arr[0];
@@ -98,6 +109,8 @@ public class ArraysProblems extends SortingAlgorithm {
         printArray(arr);
     }
 
+    //Store the K elements in a temp space
+    //Now move each element to K step left
     public void leftRotateKSteps(int[] arr, int k) {
         int n = arr.length;
         k = k % n;
