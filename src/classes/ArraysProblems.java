@@ -4,7 +4,9 @@ import java.util.*;
 
 public class ArraysProblems extends SortingAlgorithm {
 
-    /**find the largest element of the array*/
+    /**
+     * find the largest element of the array
+     */
     public int largestElement(int[] arr) {
         int maxElement = Integer.MIN_VALUE;
         for (int i = 0; i < arr.length - 1; i++) {
@@ -16,7 +18,9 @@ public class ArraysProblems extends SortingAlgorithm {
         return maxElement;
     }
 
-    /**find the second-largest element of the array*/
+    /**
+     * find the second-largest element of the array
+     */
     public int secondLargestElement(int[] arr) {
         int maxElement = Integer.MIN_VALUE;
         int secondMaxElement = Integer.MIN_VALUE;
@@ -32,7 +36,9 @@ public class ArraysProblems extends SortingAlgorithm {
         return secondMaxElement;
     }
 
-    /**Check the give array is sorted or not*/
+    /**
+     * Check the give array is sorted or not
+     */
     //Here we do if any arr[i] < arr[i-1] than not sorted
     public boolean checkSortedArray(int[] arr) {
         boolean isSorted = true;
@@ -45,8 +51,10 @@ public class ArraysProblems extends SortingAlgorithm {
         return isSorted;
     }
 
-   /**Remove duplicate elements from the Array given */
-   //Here we take an extra space (temp array) and added unique element the temp array.
+    /**
+     * Remove duplicate elements from the Array given
+     */
+    //Here we take an extra space (temp array) and added unique element the temp array.
     public void removeDuplicate(int[] arr) {
         int n = arr.length;
         int[] result = new int[n];
@@ -93,7 +101,9 @@ public class ArraysProblems extends SortingAlgorithm {
         printArray(arr);
     }
 
-    /**Left rotate the given array*/
+    /**
+     * Left rotate the given array
+     */
     //Store the first element in a temp space
     //Now move each element to step one left
     public void leftRotateArray(int[] arr) {
@@ -131,6 +141,10 @@ public class ArraysProblems extends SortingAlgorithm {
         printArray(arr);
     }
 
+
+    //First reverse array 0 to k-1
+    //Then reverse array k to n-1
+    //Finally reverse array 0 to n-1
     public void leftRotateKStepsOptimal(int[] arr, int k) {
         int n = arr.length;
         k = k % n;
@@ -140,6 +154,11 @@ public class ArraysProblems extends SortingAlgorithm {
         printArray(arr);
     }
 
+
+    /**
+     * Find union of the two arrays* -->
+     */
+    //Here we are using set.
     public void unionOfArrays(int[] arr1, int[] arr2) {
         int n = arr1.length;
         int m = arr2.length;
@@ -195,6 +214,12 @@ public class ArraysProblems extends SortingAlgorithm {
         }
     }
 
+
+    /**
+     * Move All the zeros to end --->
+     */
+    //First find the first zero
+    //Then swap zero with next element
     public void moveZeroToEnd(int[] arr) {
         int n = arr.length;
         int j = -1;
@@ -226,6 +251,10 @@ public class ArraysProblems extends SortingAlgorithm {
         return -1;
     }
 
+
+    /**
+     * Find the missing number in the array
+     */
     public int missingNumber(int[] arr) {
         int n = arr.length;
         int[] hash = new int[n + 1];
@@ -272,6 +301,9 @@ public class ArraysProblems extends SortingAlgorithm {
         return (xor1 ^ xor2);
     }
 
+    /**
+     * Find maximum number of consecutive ones
+     */
     public int maximumConsecutiveOnes(int[] arr) {
         int count = 0, max = 0;
         for (int j : arr) {
@@ -287,6 +319,9 @@ public class ArraysProblems extends SortingAlgorithm {
         return max;
     }
 
+    /**
+     * Find the frequency of the element of the array
+     */
     public void elementFrequency(int[] arr) {
         int ones = -1;
         int twice = -1;
@@ -309,6 +344,45 @@ public class ArraysProblems extends SortingAlgorithm {
         System.out.println("Number present two times " + twice);
     }
 
+    public void elementFrequency2(int[] arr) {
+        int ones = -1;
+        int twice = -1;
+        int n = arr.length;
+        HashMap<Integer, Integer> hashMap = new HashMap<>();
+
+        for (int i = 0; i < n - 1; i++) {
+            int value = hashMap.getOrDefault(arr[i], 0);
+            hashMap.put(arr[i], value + 1);
+        }
+
+        for (Map.Entry<Integer, Integer> e : hashMap.entrySet()) {
+            if (e.getValue() == 1) {
+                ones = e.getKey();
+            } else if (e.getValue() == 2) {
+                twice = e.getKey();
+            }
+        }
+
+        System.out.println("Number present one times " + ones);
+        System.out.println("Number present two times " + twice);
+    }
+
+    /** Print All Sub-Arrays*/
+    public void printAllSubArray(int[] arr) {
+        int n = arr.length;
+        for (int start = 0; start < n; start++) {
+            for (int end = start; end < n; end++) {
+                for (int k = start; k <= end; k++) {
+                    System.out.print(arr[k] + " ");
+                }
+                System.out.println();
+            }
+        }
+    }
+
+    /**
+     * Find length of the longest sub-array having sum is equal to K
+     */
     public int longestSubArray(int[] arr, int k) {
         int len = 0;
         int sum = 0;

@@ -107,7 +107,7 @@ public class Main {
 
        /* int [] ones = {1, 1, 0, 2, 2, 1};
         System.out.println("Maximum number of consecutive ones "+ ap.maximumConsecutiveOnes(ones));
-        ap.elementFrequency(ones);*/
+        ap.elementFrequency2(ones);*/
 
       /*  int [] array = {2,3,5};
         System.out.println("Longest SubArray : "+ ap.longestSubArrayMethod2(array,5));*/
