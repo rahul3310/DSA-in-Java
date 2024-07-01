@@ -437,8 +437,7 @@ public class ArraysProblems extends SortingAlgorithm {
     /**
      * @Moore's Voting Algorithm
      * Initialize 2 variables:
-     * Count –  for tracking the count of element
-     * Element – for which element we are counting
+     * Count –  for tracking the count of element for which element we are counting
      * Traverse through the given array.
      * If Count is 0 then store the current element of the array as Element.
      * If the current element and Element are the same increase the Count by 1.
@@ -528,6 +527,19 @@ public class ArraysProblems extends SortingAlgorithm {
         }
 
         printArray(arr);
+    }
+
+    public void buySellStock(int [] arr){
+        int n = arr.length;
+        int min = arr[0];
+        int maxProfit = 0;
+        for (int i = 0; i < n; i++) {
+            int cost = arr[i] -  min;
+            maxProfit = Math.max(cost,maxProfit);
+            min = Math.min(min,arr[i]);
+        }
+
+        System.out.println("Maximum profit is "+maxProfit);
     }
 
     public void reverseArray(int[] arr, int start, int end) {

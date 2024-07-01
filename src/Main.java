@@ -1,7 +1,9 @@
+import PODGfg.DoublyLinkedList;
 import classes.*;
 
 import java.util.Arrays;
 import java.util.HashSet;
+import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
@@ -122,10 +124,30 @@ public class Main {
         int[] nums = {2, 2, 1, 1, 1, 2, 2};
         ap.majorityElement(nums);
         ap.mooresVotingAlgorithm(nums);*/
-        int[] arrK = { -2, 1, -3, 4, -1, 2, 1, -5, 4};
+     /*   int[] arrK = { -2, 1, -3, 4, -1, 2, 1, -5, 4};
         ap.maximumSumSubArray(arrK);
 
+        int [] buysell = {7,1,5,3,6,4};
+        ap.buySellStock(buysell);
+*/
+        int [] buysell = {1,3,4};
+            DoublyLinkedList head = null;
+            DoublyLinkedList tail = null;
 
+        for (int j : buysell) {
+            if (head == null) {
+                head = new DoublyLinkedList(j);
+                tail = head;
+            } else {
+                DoublyLinkedList newNode = new DoublyLinkedList(j);
+                tail.next = newNode;
+                newNode.prev = tail;
+                tail = newNode;
+            }
+        }
+
+        DoublyLinkedList obj = new DoublyLinkedList();
+        obj.deleteNode(head,3);
     }
 
 
