@@ -607,14 +607,59 @@ public class ArraysProblems extends SortingAlgorithm {
         int n = arr.length;
         int min = arr[0];
         int maxProfit = 0;
-        for (int i = 0; i < n; i++) {
-            int cost = arr[i] -  min;
-            maxProfit = Math.max(cost,maxProfit);
-            min = Math.min(min,arr[i]);
+        for (int j : arr) {
+            int cost = j - min;
+            maxProfit = Math.max(cost, maxProfit);
+            min = Math.min(min, j);
         }
 
         System.out.println("Maximum profit is "+maxProfit);
     }
+
+    public void nextPermutation(int [] arr){
+
+        int n = arr.length;
+        int pivot = -1;
+        //First find the Pivot i.e element from where all the next elements are greater than it.
+        //Start iterating from the end of the array
+
+        for (int i =n-2;i>=0;i--){
+            if(arr[i] < arr[i+1]){
+                pivot = i;
+                break;
+            }
+        }
+
+        //If pivot is -1 then no next permutation possible So just
+        //reverse the Array and return
+
+        if (pivot == -1){
+            reverseArray(arr,0,n-1);
+        }
+
+        //If we found the pivot
+        //Now find just greater number from the pivot and swap with pivot
+
+        for (int j = n-1;j>pivot;j--){
+            if (arr[pivot]<arr[j]){
+                swapArrayElement(arr,pivot,j);
+                break;
+            }
+        }
+
+        //Now arrange the element after the pivot in ascending order
+        int start = pivot+1;
+        int end  = n-1;
+        while(start<end){
+            if (arr[start]>arr[end]){
+                swapArrayElement(arr,start,end);
+            }
+            start++;
+            end--;
+        }
+
+    }
+
 
     public void reverseArray(int[] arr, int start, int end) {
         while (start < end) {
