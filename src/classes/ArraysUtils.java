@@ -2,7 +2,7 @@ package classes;
 
 import java.util.*;
 
-public class ArraysProblems extends SortingAlgorithm {
+public class ArraysUtils extends SortingAlgorithm {
 
     /**
      * find the largest element of the array
@@ -489,92 +489,6 @@ public class ArraysProblems extends SortingAlgorithm {
         printArray(arr);
     }
 
-    //Find element occurs more than n/2 times in Array
-    public void majorityElement(int[] arr) {
-        int majorityElement = -1;
-        int n = arr.length;
-        HashMap<Integer, Integer> map = new HashMap<>();
-
-        for (int j : arr) {
-            int value = map.getOrDefault(j, 0);
-            map.put(j, value + 1);
-        }
-
-        for (Map.Entry<Integer, Integer> it : map.entrySet()) {
-            if (it.getValue() > n / 2) {
-                majorityElement = it.getKey();
-            }
-        }
-        System.out.println("Majority element is " + majorityElement);
-    }
-
-    /**
-     * @Moore's Voting Algorithm
-     * Initialize 2 variables:
-     * Count –  for tracking the count of element for which element we are counting
-     * Traverse through the given array.
-     * If Count is 0 then store the current element of the array as Element.
-     * If the current element and Element are the same increase the Count by 1.
-     * If they are different decrease the Count by 1.
-     * The integer present in Element should be the result we are expecting
-     */
-
-    public void mooresVotingAlgorithm(int[] arr) {
-        int majorityEle = -1;
-        int count = 0;
-        for (int i = 0; i < arr.length; i++) {
-            if (count == 0) {
-                count = 1;
-                majorityEle = arr[i];
-            } else if (majorityEle == arr[i]) {
-                count++;
-            } else {
-                count--;
-            }
-        }
-
-        int count1 = 0;
-        for (int i = 0; i < arr.length; i++) {
-            if (majorityEle == arr[i]) count1++;
-        }
-
-        if (count1 > arr.length / 2) {
-            System.out.println("Majority Element " + majorityEle);
-        } else {
-            System.out.println("Majority Element is -1");
-        }
-
-    }
-
-    //Kadden's Algorithm to find maximum sum of sub-array
-    public void maximumSumSubArray(int[] arr) {
-        int sum = 0, maxSum = arr[0];
-        int start = 0;
-        int ansStart = -1, ansEnd = -1;
-
-        for (int i = 0; i < arr.length; i++) {
-
-            if (sum == 0) start = i;
-
-            sum += arr[i];
-
-            if (sum > maxSum) {
-                maxSum = sum;
-                ansStart = start;
-                ansEnd = i;
-            }
-
-            if (sum < 0) sum = 0;
-
-        }
-
-        for (int i = ansStart; i <= ansEnd; i++) {
-            System.out.print(arr[i] + " ");
-        }
-        System.out.println();
-        System.out.println("Maximum sum " + maxSum);
-    }
-
     public void sortZerosOnesTwosArray(int[] arr) {
         int count0 = 0, count1 = 0, count2 = 0;
         int n = arr.length;
@@ -603,62 +517,8 @@ public class ArraysProblems extends SortingAlgorithm {
         printArray(arr);
     }
 
-    public void buySellStock(int [] arr){
-        int n = arr.length;
-        int min = arr[0];
-        int maxProfit = 0;
-        for (int j : arr) {
-            int cost = j - min;
-            maxProfit = Math.max(cost, maxProfit);
-            min = Math.min(min, j);
-        }
 
-        System.out.println("Maximum profit is "+maxProfit);
-    }
 
-    public void nextPermutation(int [] arr){
-
-        int n = arr.length;
-        int pivot = -1;
-        //First find the Pivot i.e element from where all the next elements are greater than it.
-        //Start iterating from the end of the array
-
-        for (int i =n-2;i>=0;i--){
-            if(arr[i] < arr[i+1]){
-                pivot = i;
-                break;
-            }
-        }
-
-        //If pivot is -1 then no next permutation possible So just
-        //reverse the Array and return
-
-        if (pivot == -1){
-            reverseArray(arr,0,n-1);
-        }
-
-        //If we found the pivot
-        //Now find just greater number from the pivot and swap with pivot
-
-        for (int j = n-1;j>pivot;j--){
-            if (arr[pivot]<arr[j]){
-                swapArrayElement(arr,pivot,j);
-                break;
-            }
-        }
-
-        //Now arrange the element after the pivot in ascending order
-        int start = pivot+1;
-        int end  = n-1;
-        while(start<end){
-            if (arr[start]>arr[end]){
-                swapArrayElement(arr,start,end);
-            }
-            start++;
-            end--;
-        }
-
-    }
 
 
     public void reverseArray(int[] arr, int start, int end) {
