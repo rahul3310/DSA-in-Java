@@ -232,8 +232,17 @@ public class GFGArraysProblems extends ArraysUtils {
 
 
     /**
-     * @Kadden's Algorithm to find maximum sum of sub-array
-     */
+     * @Kadden's Algorithm to find maximum sum of sub-array and range of sub-array */
+
+    public int kadaneAlgo(int [] arr){
+        int sum = 0,maxSum = arr[0];
+        for (int j : arr) {
+            sum = Math.max(sum + j, j);
+            maxSum = Math.max(maxSum, sum);
+        }
+
+        return  maxSum;
+    }
     public void maximumSumSubArray(int[] arr) {
         int sum = 0, maxSum = arr[0];
         int start = 0;
@@ -241,17 +250,17 @@ public class GFGArraysProblems extends ArraysUtils {
 
         for (int i = 0; i < arr.length; i++) {
 
-            if (sum == 0) start = i;
-
             sum += arr[i];
-
             if (sum > maxSum) {
                 maxSum = sum;
                 ansStart = start;
                 ansEnd = i;
             }
 
-            if (sum < 0) sum = 0;
+            if (sum < 0) {
+                sum = 0;
+                start = i;
+            }
 
         }
 
@@ -261,4 +270,31 @@ public class GFGArraysProblems extends ArraysUtils {
         System.out.println();
         System.out.println("Maximum sum " + maxSum);
     }
+
+    /** @Maximum Product Sub-array*/
+    public int maxProduct(int [] arr){
+        int maxProduct = Integer.MIN_VALUE;
+
+        int prefix = 1,suffix = 1;
+
+        int n = arr.length;
+
+
+        for (int i = 0;i<n;i++){
+
+            if (prefix == 0) prefix = 1;
+            if (suffix == 0) suffix = 1;
+
+            prefix *= arr[i];
+
+            suffix *= arr[n-i-1];
+
+
+           maxProduct = Math.max(maxProduct,Math.max(prefix,suffix));
+        }
+
+        return maxProduct;
+    }
+
+
 }
