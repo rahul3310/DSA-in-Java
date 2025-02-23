@@ -296,5 +296,27 @@ public class GFGArraysProblems extends ArraysUtils {
         return maxProduct;
     }
 
+    public int maxProduct2(int[] arr) {
+        // code here
+        int maxP = arr[0];
+        int minP = arr[0];
+        int res = arr[0];
+        int n = arr.length;
+        for(int i=1;i<n;i++){
+            if(arr[i]<0){  //when the number is negative the swap the max and min value
+                int temp = maxP;
+                maxP = minP;
+                minP = temp;
+            }
+
+            maxP = Math.max(arr[i],arr[i]*maxP);
+            minP = Math.min(arr[i],arr[i]*minP);
+
+            res = Math.max(res,maxP);
+        }
+        return res;
+
+    }
+
 
 }
