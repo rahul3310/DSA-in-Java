@@ -217,7 +217,7 @@ public class GFGArraysProblems extends ArraysUtils {
         int diff = arr[n - 1] - arr[0];  //maximum possible difference
         int minH = arr[0] + k;
         int maxH = arr[n - 1] - k;
-        
+
         for (int j : arr) {
             minH = Math.min(minH, j - k);
 
@@ -232,17 +232,19 @@ public class GFGArraysProblems extends ArraysUtils {
 
 
     /**
-     * @Kadden's Algorithm to find maximum sum of sub-array and range of sub-array */
+     * @Kadden's Algorithm to find maximum sum of sub-array and range of sub-array
+     */
 
-    public int kadaneAlgo(int [] arr){
-        int sum = 0,maxSum = arr[0];
+    public int kadaneAlgo(int[] arr) {
+        int sum = 0, maxSum = arr[0];
         for (int j : arr) {
             sum = Math.max(sum + j, j);
             maxSum = Math.max(maxSum, sum);
         }
 
-        return  maxSum;
+        return maxSum;
     }
+
     public void maximumSumSubArray(int[] arr) {
         int sum = 0, maxSum = arr[0];
         int start = 0;
@@ -271,26 +273,28 @@ public class GFGArraysProblems extends ArraysUtils {
         System.out.println("Maximum sum " + maxSum);
     }
 
-    /** @Maximum Product Sub-array*/
-    public int maxProduct(int [] arr){
+    /**
+     * @Maximum Product Sub-array
+     */
+    public int maxProduct(int[] arr) {
         int maxProduct = Integer.MIN_VALUE;
 
-        int prefix = 1,suffix = 1;
+        int prefix = 1, suffix = 1;
 
         int n = arr.length;
 
 
-        for (int i = 0;i<n;i++){
+        for (int i = 0; i < n; i++) {
 
             if (prefix == 0) prefix = 1;
             if (suffix == 0) suffix = 1;
 
             prefix *= arr[i];
 
-            suffix *= arr[n-i-1];
+            suffix *= arr[n - i - 1];
 
 
-           maxProduct = Math.max(maxProduct,Math.max(prefix,suffix));
+            maxProduct = Math.max(maxProduct, Math.max(prefix, suffix));
         }
 
         return maxProduct;
@@ -302,20 +306,138 @@ public class GFGArraysProblems extends ArraysUtils {
         int minP = arr[0];
         int res = arr[0];
         int n = arr.length;
-        for(int i=1;i<n;i++){
-            if(arr[i]<0){  //when the number is negative the swap the max and min value
+        for (int i = 1; i < n; i++) {
+            if (arr[i] < 0) {  //when the number is negative the swap the max and min value
                 int temp = maxP;
                 maxP = minP;
                 minP = temp;
             }
 
-            maxP = Math.max(arr[i],arr[i]*maxP);
-            minP = Math.min(arr[i],arr[i]*minP);
+            maxP = Math.max(arr[i], arr[i] * maxP);
+            minP = Math.min(arr[i], arr[i] * minP);
 
-            res = Math.max(res,maxP);
+            res = Math.max(res, maxP);
         }
         return res;
 
+    }
+
+    /**
+     * Max Circular Sub-array Sum
+     */
+
+    public int maxCircularSum(int[] arr) {
+        int index = -1, result = 0, n = arr.length;
+
+        for (int i = 0; i < n; i++) {
+            int currSum = 0;
+            for (int j = 0; j < n; j++) {
+
+                index = (i + j) % n;
+                currSum += arr[index];
+
+                result = Math.max(result, currSum);
+            }
+        }
+
+        return result;
+    }
+
+    public int maxCircularSum2(int []arr){
+        int n = arr.length;
+        int [] suffixArr = new int[n];
+        int suffixSum = arr[n-1];
+
+        suffixArr[n-1] = suffixSum;
+
+        // size n-2 is for tha we already fill n-1th position in the array, and we should also include the circular starting indexes
+        for (int i = n-2;i>=0;i--){
+            suffixSum += arr[i];
+            suffixArr[i] = Math.max(suffixArr[i+1],suffixSum); //here we traverse from the end of the Array
+        }
+
+        int circularSum = arr[0];
+        int normalSum = arr[0];
+
+        int currentSum = 0,prefix = 0;
+
+        for(int i = 0;i<n-1;i++){
+            //Calculate the normal sum using Kadane algorithm
+            currentSum  = Math.max(currentSum+arr[i],arr[i]);
+            normalSum = Math.max(normalSum,currentSum);
+
+
+            //Now calculate the circular sum
+
+            prefix += arr[i];
+
+            int sumOfArrayFromEnd = suffixArr[i+1]; //we get from the next element from current because the new array starts from next index
+
+            circularSum = Math.max(circularSum,Math.max(prefix,prefix + sumOfArrayFromEnd));
+        }
+
+        return circularSum;
+
+    }
+
+    public int circularSubArraySum(int []arr) {
+
+        int n = arr.length;
+        int currentMin = 0,currentMax = 0, totalSum = 0,maxSum = arr[0],minSum = arr[0];
+
+        for(int i = 0;i<n;i++){
+            //calculate max sum using Kadane algo
+            currentMax = Math.max(currentMax+arr[i],arr[i]);
+            maxSum = Math.max(maxSum,currentMax);
+
+            //calculate min. sum using Kadane
+            currentMin = Math.min(currentMin+arr[i],arr[i]);
+            minSum = Math.min(minSum,currentMin);
+
+            //find total sum because the Sum = a + b
+            //So we assum a is max circular  => a = Sum - b(minSum)
+
+            totalSum += arr[i];
+
+        }
+
+        int circularSum = totalSum - minSum;
+
+        //if minSum == totalSum return maxSum as result
+
+        if(minSum == circularSum) return maxSum;
+
+        return Math.max(circularSum,maxSum);
+    }
+
+
+    /** Smallest Positive Missing
+     * Using the cyclic sort we can find
+     * why cyclic sort because number range is (1 - n)*/
+
+    public int smallestMissingNumber(int[] arr) {
+        int n = arr.length;
+
+        // Cyclic Sort: Place each number at its correct position
+        int i = 0;
+        while (i < n) {
+            int correctIndex = arr[i] - 1; // Correct position for arr[i]
+            if (arr[i] >= 1 && arr[i] <= n && arr[i] != arr[correctIndex]) {
+                swapArrayElement(arr, i, correctIndex);
+            } else {
+                i++;
+            }
+        }
+
+        // Find the first missing positive number
+        for (i = 0; i < n; i++) {
+            if (arr[i] != i + 1) {
+                return i + 1;
+            }
+        }
+
+        // If all numbers 1 to n are present, return n+1
+        return n + 1;
     }
 
 

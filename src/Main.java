@@ -5,9 +5,9 @@ public class Main {
 
         GFGArraysProblems ap = new GFGArraysProblems();
 
-        int [] arr = {-2, 6, -3, -10, 0, 2};
+        int [] arr = {2, -3, 4, 1, 1, 7};
 
-        System.out.print("Max Product : "+ap.maxProduct(arr));
+        System.out.print("Smallest missing number : "+ap.smallestMissingNumber(arr));
     }
 
 }
