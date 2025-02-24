@@ -343,56 +343,56 @@ public class GFGArraysProblems extends ArraysUtils {
         return result;
     }
 
-    public int maxCircularSum2(int []arr){
+    public int maxCircularSum2(int[] arr) {
         int n = arr.length;
-        int [] suffixArr = new int[n];
-        int suffixSum = arr[n-1];
+        int[] suffixArr = new int[n];
+        int suffixSum = arr[n - 1];
 
-        suffixArr[n-1] = suffixSum;
+        suffixArr[n - 1] = suffixSum;
 
         // size n-2 is for tha we already fill n-1th position in the array, and we should also include the circular starting indexes
-        for (int i = n-2;i>=0;i--){
+        for (int i = n - 2; i >= 0; i--) {
             suffixSum += arr[i];
-            suffixArr[i] = Math.max(suffixArr[i+1],suffixSum); //here we traverse from the end of the Array
+            suffixArr[i] = Math.max(suffixArr[i + 1], suffixSum); //here we traverse from the end of the Array
         }
 
         int circularSum = arr[0];
         int normalSum = arr[0];
 
-        int currentSum = 0,prefix = 0;
+        int currentSum = 0, prefix = 0;
 
-        for(int i = 0;i<n-1;i++){
+        for (int i = 0; i < n - 1; i++) {
             //Calculate the normal sum using Kadane algorithm
-            currentSum  = Math.max(currentSum+arr[i],arr[i]);
-            normalSum = Math.max(normalSum,currentSum);
+            currentSum = Math.max(currentSum + arr[i], arr[i]);
+            normalSum = Math.max(normalSum, currentSum);
 
 
             //Now calculate the circular sum
 
             prefix += arr[i];
 
-            int sumOfArrayFromEnd = suffixArr[i+1]; //we get from the next element from current because the new array starts from next index
+            int sumOfArrayFromEnd = suffixArr[i + 1]; //we get from the next element from current because the new array starts from next index
 
-            circularSum = Math.max(circularSum,Math.max(prefix,prefix + sumOfArrayFromEnd));
+            circularSum = Math.max(circularSum, Math.max(prefix, prefix + sumOfArrayFromEnd));
         }
 
         return circularSum;
 
     }
 
-    public int circularSubArraySum(int []arr) {
+    public int circularSubArraySum(int[] arr) {
 
         int n = arr.length;
-        int currentMin = 0,currentMax = 0, totalSum = 0,maxSum = arr[0],minSum = arr[0];
+        int currentMin = 0, currentMax = 0, totalSum = 0, maxSum = arr[0], minSum = arr[0];
 
-        for(int i = 0;i<n;i++){
+        for (int i = 0; i < n; i++) {
             //calculate max sum using Kadane algo
-            currentMax = Math.max(currentMax+arr[i],arr[i]);
-            maxSum = Math.max(maxSum,currentMax);
+            currentMax = Math.max(currentMax + arr[i], arr[i]);
+            maxSum = Math.max(maxSum, currentMax);
 
             //calculate min. sum using Kadane
-            currentMin = Math.min(currentMin+arr[i],arr[i]);
-            minSum = Math.min(minSum,currentMin);
+            currentMin = Math.min(currentMin + arr[i], arr[i]);
+            minSum = Math.min(minSum, currentMin);
 
             //find total sum because the Sum = a + b
             //So we assum a is max circular  => a = Sum - b(minSum)
@@ -405,32 +405,33 @@ public class GFGArraysProblems extends ArraysUtils {
 
         //if minSum == totalSum return maxSum as result
 
-        if(minSum == circularSum) return maxSum;
+        if (minSum == circularSum) return maxSum;
 
-        return Math.max(circularSum,maxSum);
+        return Math.max(circularSum, maxSum);
     }
 
 
-    /** Smallest Positive Missing
+    /**
+     * Smallest Positive Missing
      * Using the cyclic sort we can find
-     * why cyclic sort because number range is (1 - n)*/
+     * why cyclic sort because number range is (1 - n)
+     */
 
     public int smallestMissingNumber(int[] arr) {
         int n = arr.length;
 
         // Cyclic Sort: Place each number at its correct position
-        int i = 0;
-        while (i < n) {
-            int correctIndex = arr[i] - 1; // Correct position for arr[i]
-            if (arr[i] >= 1 && arr[i] <= n && arr[i] != arr[correctIndex]) {
+
+        for (int i = 0; i < n; i++) {
+            int correctIndex = arr[i] - 1;
+            while (arr[i] > 0 && arr[i] <= n && arr[i] != arr[correctIndex]) {
                 swapArrayElement(arr, i, correctIndex);
-            } else {
-                i++;
             }
         }
 
+
         // Find the first missing positive number
-        for (i = 0; i < n; i++) {
+        for (int i = 0; i < n; i++) {
             if (arr[i] != i + 1) {
                 return i + 1;
             }
