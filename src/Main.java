@@ -13,9 +13,9 @@ public class Main {
         //String Problems
         GFGStringProblems sp = new GFGStringProblems();
         String text = "ABCABCD";
-        String pat = "ABCD";
-
-        System.out.print("Pattern found at : "+sp.patternSearching(text,pat));
+        String pat = "AB025";
+        sp.rabinKarpAlgo(text,pat);
+        System.out.println("Pattern found at : "+sp.patternSearching(text,pat));
     }
 
 }
