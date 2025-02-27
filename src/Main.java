@@ -13,8 +13,8 @@ public class Main {
         //String Problems
         GFGStringProblems sp = new GFGStringProblems();
         String text = "ABCABCD";
-        String pat = "AB025";
-        sp.rabinKarpAlgo(text,pat);
+        String pat = "ABC";
+        sp.KMPAlgorithm(text,pat);
         System.out.println("Pattern found at : "+sp.patternSearching(text,pat));
     }
 
