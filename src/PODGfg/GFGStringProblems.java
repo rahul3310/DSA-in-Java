@@ -157,23 +157,70 @@ public class GFGStringProblems {
         int[] countTxt = new int[CHAR];
         int[] countPat = new int[CHAR];
 
+        //For fist window match
         for (int i = 0; i < m; i++) {
             countTxt[i]++;
             countPat[i]++;
         }
+
+        //for next window
         for (int i = pat.length(); i < n; i++) {
             if (areSame(countTxt, countPat)) return true;
-            countTxt[txt.charAt(i)]++;
-            countTxt[txt.charAt(i - pat.length())]--;
+            countTxt[txt.charAt(i)]++;   //add the first character of the new window
+            countTxt[txt.charAt(i - pat.length())]--;  //remove the first character of the previous window
         }
         return false;
     }
 
-    static boolean areSame(int[] CT, int[] CP) {
+    private boolean areSame(int[] CT, int[] CP) {
         for (int i = 0; i < CHAR; i++) {
             if (CT[i] != CP[i]) return false;
         }
         return true;
+    }
+
+
+    /**
+     * Count lexicographic string smaller than given string + 1 is our result
+     */
+    public void lexicographicRankingOfString(String txt) {
+        int[] count = new int[CHAR];
+        int n = txt.length();
+        int result = 1;
+        int multiplier = fact(n); //Precompute the total String possible
+
+        //Now count the Character in the String
+        for (int i = 0; i < n; i++) {
+            count[txt.charAt(i)]++;
+
+        }
+
+        //we are calculating the cumulative count So that we can find the
+        //smaller character on the right side in linear time
+        for (int i = 1; i < CHAR; i++) {
+            count[i] += count[i - 1];
+        }
+
+        //Now Calculate the smaller String possible the Idea is that
+        //Find the number of smaller character in the  string in linear time
+
+        for (int i = 0; i < n - 1; i++) {
+            multiplier = multiplier / (n - i);  //calculate for number of string possible with character
+
+            result = result + count[txt.charAt(i) - 1] * multiplier;  //count[txt.charAt(i) - 1] this calculate the count of smaller character from text.charAt(i)
+            for (int j = txt.charAt(i); j < CHAR; j++) {
+                count[j]--;
+            }
+
+        }
+
+        System.out.println("Rank of given Text is : " + result);
+    }
+
+
+    private int fact(int n) {
+        if (n == 0 || n == 1) return 1;
+        return n * fact(n - 1);
     }
 
 }

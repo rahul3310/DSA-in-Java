@@ -16,6 +16,9 @@ public class Main {
         String pat = "ABC";
         sp.KMPAlgorithm(text,pat);
         System.out.println("Pattern found at : "+sp.patternSearching(text,pat));
+
+        String txt = "BAC";
+        sp.lexicographicRankingOfString(txt);
     }
 
 }
