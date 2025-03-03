@@ -19,6 +19,8 @@ public class Main {
 
         String txt = "BAC";
         sp.lexicographicRankingOfString(txt);
+
+        System.out.println("Length of longest Sub-string : " + sp.longestSubString2(text));
     }
 
 }

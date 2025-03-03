@@ -1,5 +1,7 @@
 package PODGfg;
 
+import java.util.Arrays;
+
 public class GFGStringProblems {
 
     /**
@@ -222,5 +224,45 @@ public class GFGStringProblems {
         if (n == 0 || n == 1) return 1;
         return n * fact(n - 1);
     }
+
+    /**
+     * Find the length of longest sub-string with distinct characters
+     */
+    public int longestSubString(String txt) {
+        int n = txt.length(), res = 1;
+
+        for (int i = 0; i < n; i++) {
+            boolean[] visited = new boolean[CHAR]; //re-initialized the Array after one iteration completed
+            for (int j = i; j < n; j++) {
+                if (visited[txt.charAt(j)]) {
+                    break;
+                } else {
+                    res = Math.max(res, j - i + 1);
+                    visited[txt.charAt(j)] = true;
+                }
+            }
+        }
+
+        return res;
+    }
+
+    public int longestSubString2(String str) {
+        int n = str.length(), res = 1;
+        int[] prev = new int[CHAR];
+
+        //First the default value is -1
+        Arrays.fill(prev, -1);
+
+        int start = 0;
+        for (int j = 0; j < n; j++) {
+            start = Math.max(start, prev[str.charAt(j)] + 1);
+            int maxEnd = j - start + 1;
+            res = Math.max(res, maxEnd);
+            prev[str.charAt(j)] = j;
+        }
+
+        return res;
+    }
+
 
 }
