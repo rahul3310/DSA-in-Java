@@ -441,5 +441,33 @@ public class GFGArraysProblems extends ArraysUtils {
         return n + 1;
     }
 
+    /** @LeetCode-2161 Partition Array According to Given Pivot*/
+    public int[] pivotArray(int[] nums, int pivot) {
+
+        List<Integer> smaller = new ArrayList<>();
+        List<Integer> equal = new ArrayList<>();
+        List<Integer> larger = new ArrayList<>();
+
+        // Partitioning nums into three lists
+        for (int num : nums) {
+            if (num < pivot) {
+                smaller.add(num);
+            } else if (num == pivot) {
+                equal.add(num);
+            } else {
+                larger.add(num);
+            }
+        }
+
+        // Merging the lists back into nums
+        int k = 0;
+        for (int num : smaller) nums[k++] = num;
+        for (int num : equal) nums[k++] = num;
+        for (int num : larger) nums[k++] = num;
+
+        return nums;
+
+    }
+
 
 }
