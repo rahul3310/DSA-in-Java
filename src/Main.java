@@ -13,16 +13,12 @@ public class Main {
 
         //String Problems
         GFGStringProblems sp = new GFGStringProblems();
-        String text = "ABCABCD";
-        String pat = "ABC";
+        String text = "larbjrpjjjgharbjrpjjjgh";
+        String pat = "jjgh";
         sp.KMPAlgorithm(text, pat);
-        System.out.println("Pattern found at : " + sp.patternSearching(text, pat));
+        //System.out.println("Pattern found at : " + sp.patternSearching(text, pat));
 
-        String txt = "BAC";
-        sp.lexicographicRankingOfString(txt);
 
-        System.out.println("Length of longest Sub-string : " + sp.longestSubString2(text));
-        ap.printArray(ap.pivotArray(arr1, 2));
     }
 
 }

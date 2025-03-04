@@ -87,16 +87,16 @@ public class GFGStringProblems {
             if (txt.charAt(i) == pat.charAt(j)) {
                 i++;
                 j++;
+            } else {
+                if (j == 0) i++;
+                else {
+                    j = lps[j - 1];
+                }
             }
 
             if (j == m) {
                 System.out.println("Found at : " + (i - j));
                 j = lps[j - 1];
-            } else if (i < n && txt.charAt(i) != pat.charAt(j)) {
-                if (j == 0) i++;
-                else {
-                    j = lps[j - 1];
-                }
             }
 
         }
@@ -117,6 +117,8 @@ public class GFGStringProblems {
                 if (len == 0) {
                     lps[i] = 0;  //there does not exit prefix which is also as suffix
                     i++;
+                }else {
+                    len = lps[len-1];
                 }
             }
         }
@@ -262,6 +264,28 @@ public class GFGStringProblems {
         }
 
         return res;
+    }
+
+    /** Keypad typing Problem */
+    public String keypadTyping(String str){
+        StringBuilder s = new StringBuilder();
+        // Mapping letters to digits based on T9 keypad
+        int[] mapping = {
+                2, 2, 2,  // a, b, c
+                3, 3, 3,  // d, e, f
+                4, 4, 4,  // g, h, i
+                5, 5, 5,  // j, k, l
+                6, 6, 6,  // m, n, o
+                7, 7, 7, 7, // p, q, r, s
+                8, 8, 8,  // t, u, v
+                9, 9, 9, 9 // w, x, y, z
+        };
+
+        // Convert each character to its corresponding digit
+        for (char ch : str.toCharArray()) {
+            s.append(mapping[ch - 'a']);  // Direct array lookup
+        }
+        return s.toString();
     }
 
 
