@@ -90,7 +90,7 @@ public class GFGStringProblems {
             } else {
                 if (j == 0) i++;
                 else {
-                    j = lps[j - 1];
+                    j = lps[j - 1];  //When mismatch occurs we bring the pattern window where the last character matched
                 }
             }
 
@@ -101,6 +101,8 @@ public class GFGStringProblems {
 
         }
     }
+
+
 
 
     private void fillLPSArray(int[] lps, String pat) {
@@ -117,8 +119,8 @@ public class GFGStringProblems {
                 if (len == 0) {
                     lps[i] = 0;  //there does not exit prefix which is also as suffix
                     i++;
-                }else {
-                    len = lps[len-1];
+                } else {
+                    len = lps[len - 1];
                 }
             }
         }
@@ -161,7 +163,7 @@ public class GFGStringProblems {
         int[] countTxt = new int[CHAR];
         int[] countPat = new int[CHAR];
 
-        //For fist window match
+        //For first window match
         for (int i = 0; i < m; i++) {
             countTxt[i]++;
             countPat[i]++;
@@ -266,8 +268,10 @@ public class GFGStringProblems {
         return res;
     }
 
-    /** Keypad typing Problem */
-    public String keypadTyping(String str){
+    /**
+     * Keypad typing Problem
+     */
+    public String keypadTyping(String str) {
         StringBuilder s = new StringBuilder();
         // Mapping letters to digits based on T9 keypad
         int[] mapping = {
@@ -286,6 +290,21 @@ public class GFGStringProblems {
             s.append(mapping[ch - 'a']);  // Direct array lookup
         }
         return s.toString();
+    }
+
+    public char nonRepeatingChar(String s) {
+        int n = s.length();
+
+        int [] count = new int[256];
+
+        for(char ch : s.toCharArray()){
+            count[ch]++;
+        }
+
+        for(char ch : s.toCharArray()){
+            if(count[ch]==1) return ch;
+        }
+        return '$';
     }
 
 
