@@ -1,6 +1,8 @@
 package PODGfg;
 
 import java.util.Arrays;
+import java.util.HashMap;
+import java.util.LinkedHashMap;
 
 public class GFGStringProblems {
 
@@ -313,6 +315,51 @@ public class GFGStringProblems {
         //If not found means it is not rotation of s1
         String temp = s1.concat(s1);
         KMPAlgorithm(temp, s2);
+    }
+
+
+    /** Isomorphic Strings e.g. aab == xxy*/
+
+    public boolean isIsomorphicString(String s1,String s2){
+        if (s1.length()!=s2.length()) return false;
+
+        HashMap<Character,Integer> m1 = new HashMap<>();
+        HashMap<Character,Integer> m2 = new HashMap<>();
+
+        for (int i =0 ;i<s1.length();i++){
+            if(!m1.containsKey(s1.charAt(i))){
+                m1.put(s1.charAt(i),i);
+            }
+
+            if(!m2.containsKey(s2.charAt(i))){
+                m2.put(s2.charAt(i),i);
+            }
+
+            //Compare the occurrence
+            if(!m1.get(s1.charAt(i)).equals(m2.get(s2.charAt(i)))){
+                return false;
+            }
+        }
+
+        return true;
+    }
+
+    //Function to find minimum number of characters which Ishaan must insert
+    //such that string doesn't have three consecutive same characters.
+    public  void modified(String a)
+    {
+        long result = 0;
+        int i = 0,n = a.length();
+        while (i<n-2){
+            if (a.charAt(i)==a.charAt(i+1) && a.charAt(i) == a.charAt(i+2)){
+                result++;
+                i = i+2;
+            }else{
+                i++;
+            }
+        }
+
+        System.out.println("Character need to be added : "+result);
     }
 
 
