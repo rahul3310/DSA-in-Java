@@ -103,8 +103,6 @@ public class GFGStringProblems {
     }
 
 
-
-
     private void fillLPSArray(int[] lps, String pat) {
         int n = pat.length(), len = 0;
         lps[0] = 0;
@@ -295,16 +293,26 @@ public class GFGStringProblems {
     public char nonRepeatingChar(String s) {
         int n = s.length();
 
-        int [] count = new int[256];
+        int[] count = new int[256];
 
-        for(char ch : s.toCharArray()){
+        for (char ch : s.toCharArray()) {
             count[ch]++;
         }
 
-        for(char ch : s.toCharArray()){
-            if(count[ch]==1) return ch;
+        for (char ch : s.toCharArray()) {
+            if (count[ch] == 1) return ch;
         }
         return '$';
+    }
+
+    /**
+     * String rotation of each other
+     */
+    public void stringRotation(String s1, String s2) {
+        //The concept is that the string s2 after any number of rotation is present in the s1+s1 string
+        //If not found means it is not rotation of s1
+        String temp = s1.concat(s1);
+        KMPAlgorithm(temp, s2);
     }
 
 
