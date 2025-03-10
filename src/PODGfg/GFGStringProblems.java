@@ -198,7 +198,7 @@ public class GFGStringProblems {
         //Now count the Character in the String
         for (int i = 0; i < n; i++) {
             count[txt.charAt(i)]++;
-
+            if (count[txt.charAt(i)] > 1) return;  //TO handle duplicate
         }
 
         //we are calculating the cumulative count So that we can find the
@@ -214,8 +214,8 @@ public class GFGStringProblems {
             multiplier = multiplier / (n - i);  //calculate for number of string possible with character
 
             result = result + count[txt.charAt(i) - 1] * multiplier;  //count[txt.charAt(i) - 1] this calculate the count of smaller character from text.charAt(i)
-            for (int j = txt.charAt(i); j < CHAR; j++) {
-                count[j]--;
+            for (int j = txt.charAt(i); j < CHAR; j++) {     // Reduce count of characters greater than S[i]
+                count[j]--;                                  //This ensures that when processing the next character, it doesn't consider characters that have already been counted.
             }
 
         }
@@ -318,25 +318,27 @@ public class GFGStringProblems {
     }
 
 
-    /** Isomorphic Strings e.g. aab == xxy*/
+    /**
+     * Isomorphic Strings e.g. aab == xxy
+     */
 
-    public boolean isIsomorphicString(String s1,String s2){
-        if (s1.length()!=s2.length()) return false;
+    public boolean isIsomorphicString(String s1, String s2) {
+        if (s1.length() != s2.length()) return false;
 
-        HashMap<Character,Integer> m1 = new HashMap<>();
-        HashMap<Character,Integer> m2 = new HashMap<>();
+        HashMap<Character, Integer> m1 = new HashMap<>();
+        HashMap<Character, Integer> m2 = new HashMap<>();
 
-        for (int i =0 ;i<s1.length();i++){
-            if(!m1.containsKey(s1.charAt(i))){
-                m1.put(s1.charAt(i),i);
+        for (int i = 0; i < s1.length(); i++) {
+            if (!m1.containsKey(s1.charAt(i))) {
+                m1.put(s1.charAt(i), i);
             }
 
-            if(!m2.containsKey(s2.charAt(i))){
-                m2.put(s2.charAt(i),i);
+            if (!m2.containsKey(s2.charAt(i))) {
+                m2.put(s2.charAt(i), i);
             }
 
             //Compare the occurrence
-            if(!m1.get(s1.charAt(i)).equals(m2.get(s2.charAt(i)))){
+            if (!m1.get(s1.charAt(i)).equals(m2.get(s2.charAt(i)))) {
                 return false;
             }
         }
@@ -346,20 +348,86 @@ public class GFGStringProblems {
 
     //Function to find minimum number of characters which Ishaan must insert
     //such that string doesn't have three consecutive same characters.
-    public  void modified(String a)
-    {
+    public void modified(String a) {
         long result = 0;
-        int i = 0,n = a.length();
-        while (i<n-2){
-            if (a.charAt(i)==a.charAt(i+1) && a.charAt(i) == a.charAt(i+2)){
+        int i = 0, n = a.length();
+        while (i < n - 2) {
+            if (a.charAt(i) == a.charAt(i + 1) && a.charAt(i) == a.charAt(i + 2)) {
                 result++;
-                i = i+2;
-            }else{
+                i = i + 2;
+            } else {
                 i++;
             }
         }
 
-        System.out.println("Character need to be added : "+result);
+        System.out.println("Character need to be added : " + result);
+    }
+
+    // Function to find the smallest window in the string s consisting
+    // of all the characters of string p
+
+    public  String smallestWindow(String s1, String s2) {
+        int n = s1.length(),m=s2.length();
+        int [] required =  new int[256];
+        int startInd = -1,count =0,minLen = Integer.MAX_VALUE;
+
+        StringBuilder smallestWindow = new StringBuilder();
+
+        //fill the all array which tells us the required character to be matched
+
+        for(int i = 0;i<m;i++){
+            required[s2.charAt(i)]++;
+        }
+
+        //Now apply the sliding window concept to match the characters
+
+        int l =0,r=0;
+
+        while(r<n){
+
+            //If the character exist in the map means one match
+            //found So increase the count and decrease the character count
+            //which indicates we remove that character
+
+            if(required[s1.charAt(r)]>0) count++;
+
+            required[s1.charAt(r)]--;  //we found So decrease
+
+            //if the size of the count is same as the length of S2 string
+            //means we found a valid window
+            //now the task is to find the smallest window So we shrink the window
+            //by moving 'l'
+
+            while(count == m){
+
+                int len  = r-l+1;
+                if(len<minLen){
+                    minLen = len;
+                    startInd = l;
+                }
+
+                //Add the character to map to track the count
+                //And move the 'l'
+
+                required[s1.charAt(l)]++;
+
+                //It indicates we still need to find that character
+                //So our count decreases
+                if(required[s1.charAt(l)]>0) count--;
+
+                l++;
+            }
+
+            r++;
+        }
+
+        if(startInd!=-1){
+            for(int i = startInd ; i<(startInd+minLen);i++){
+                smallestWindow.append(s1.charAt(i));
+            }
+        }
+
+        return smallestWindow.toString();
     }
 
 

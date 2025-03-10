@@ -18,7 +18,9 @@ public class Main {
         sp.KMPAlgorithm(text, pat);
         //System.out.println("Pattern found at : " + sp.patternSearching(text, pat));
 
-        sp.modified("ccccbbbba");
+        System.out.println(sp.smallestWindow("timetopractice","toc"));
+
+        sp.lexicographicRankingOfString("adbc");
 
 
     }
