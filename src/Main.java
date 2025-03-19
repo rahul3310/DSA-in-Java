@@ -7,7 +7,7 @@ public class Main {
         GFGArraysProblems ap = new GFGArraysProblems();
 
         int[] arr = {9, 12, 5, 10, 14, 3, 10};
-        int[] arr1 = {-3,4,3,2};
+        int[] arr1 = {2,-3,4,1,1,7};
 
         //System.out.print("Smallest missing number : "+ap.smallestMissingNumber(arr));
 
@@ -21,6 +21,8 @@ public class Main {
         System.out.println(sp.smallestWindow("timetopractice","toc"));
 
         sp.lexicographicRankingOfString("adbc");
+
+        System.out.println("smallest missing number is "+ap.smallestMissingNumberUsingVisited(arr1));
 
 
     }
