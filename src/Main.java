@@ -22,7 +22,8 @@ public class Main {
 
         sp.lexicographicRankingOfString("adbc");
 
-        System.out.println("smallest missing number is "+ap.smallestMissingNumberUsingVisited(arr1));
+       // System.out.println("smallest missing number is "+ap.smallestMissingNumberUsingVisited(arr1));
+        System.out.println("number is "+sp.stringToInt("-006454-yr5"));
 
 
     }

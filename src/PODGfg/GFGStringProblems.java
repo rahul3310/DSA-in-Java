@@ -430,5 +430,42 @@ public class GFGStringProblems {
         return smallestWindow.toString();
     }
 
+    public int stringToInt(String s){
+        int maxInt = Integer.MAX_VALUE;
+        int minInt = Integer.MIN_VALUE;
+        int n = s.length();
+
+        int i = 0;
+        boolean negative = false;
+        //Ignore white leading space
+
+        // Ignore leading whitespaces
+        while (i < n && s.charAt(i) == ' ') {
+            i++;
+        }
+
+        // Handle optional '+' or '-' sign
+        if (i < n && (s.charAt(i) == '+' || s.charAt(i) == '-')) {
+            negative = (s.charAt(i) == '-');
+            i++;
+        }
+
+        int result = 0;
+        while (i < n && s.charAt(i) >= '0' && s.charAt(i) <= '9') {
+            int digit = s.charAt(i) - '0';
+
+            // **Overflow Check Before Multiplication**
+            if (result > (maxInt - digit) / 10) {
+                return negative ? -minInt : maxInt;
+            }
+
+            result = result * 10 + digit;
+            i++;
+        }
+
+        return negative ? -result : result;
+
+    }
+
 
 }
