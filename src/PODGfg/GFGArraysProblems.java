@@ -395,7 +395,7 @@ public class GFGArraysProblems extends ArraysUtils {
             minSum = Math.min(minSum, currentMin);
 
             //find total sum because the Sum = a + b
-            //So we assum a is max circular  => a = Sum - b(minSum)
+            //So we assume a is max circular  => a = Sum - b(minSum)
 
             totalSum += arr[i];
 
@@ -415,6 +415,7 @@ public class GFGArraysProblems extends ArraysUtils {
      * Smallest Positive Missing
      * Using the cyclic sort we can find
      * why cyclic sort because number range is (1 - n)
+     * Correct position is as arr[i] should be (arr[i]-1)th index
      */
 
     public int smallestMissingNumber(int[] arr) {
@@ -439,6 +440,25 @@ public class GFGArraysProblems extends ArraysUtils {
 
         // If all numbers 1 to n are present, return n+1
         return n + 1;
+    }
+
+
+    public int smallestMissingNumberUsingVisited(int []arr){
+        int n = arr.length;
+
+        boolean [] visited = new boolean[n];
+
+        for(int i = 0;i<n;i++){
+            if(arr[i]>0 && arr[i]<=n){
+                visited[arr[i]-1] = true;
+            }
+        }
+
+        for(int j = 0 ;j<n;j++){
+            if(!visited[j]) return j+1;
+        }
+
+        return n+1;
     }
 
     /** @LeetCode-2161 Partition Array According to Given Pivot*/
@@ -468,6 +488,8 @@ public class GFGArraysProblems extends ArraysUtils {
         return nums;
 
     }
+
+
 
 
 }
