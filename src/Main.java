@@ -1,23 +1,17 @@
-import PODGfg.GFGArraysProblems;
-import PODGfg.GFGStringProblems;
+import PODGfg.GFGSortingProblems;
 
 public class Main {
     public static void main(String[] args) {
 
-        GFGArraysProblems ap = new GFGArraysProblems();
+        GFGSortingProblems ap = new GFGSortingProblems();
 
-        int[] arr = {9, 12, 5, 10, 14, 3, 10};
-        int[] arr1 = {-3,4,3,2};
+        int[] a = {2,4,7,10};
+        int[] b = {2,3};
 
-        //System.out.print("Smallest missing number : "+ap.smallestMissingNumber(arr));
+        ap.mergeSortedArrayGapMethod(a,b);
 
-        //String Problems
-        GFGStringProblems sp = new GFGStringProblems();
-        String text = "larbjrpjjjgharbjrpjjjgh";
-        String pat = "jjgh";
-        sp.KMPAlgorithm(text, pat);
-        //System.out.println("Pattern found at : " + sp.patternSearching(text, pat));
-
+        ap.printArray(a);
+        ap.printArray(b);
 
     }
 
