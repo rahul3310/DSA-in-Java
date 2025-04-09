@@ -6,6 +6,28 @@ import java.util.Arrays;
 
 public class GFGSortingProblems extends ArraysUtils {
 
+    //Dutch National Flag Algorithm to sort array of 0,1 & 2's-------->>
+    //In this Algorithm we have three pointers low , mid & high
+    public void dutchNationalFlagAlgo(int[] arr) {
+        int n = arr.length;
+        int low = 0, mid = 0, high = n - 1;
+
+        while (mid < high) {
+            if (arr[mid] == 0) {
+                swapArrayElement(arr, low, mid);
+                low++;
+                mid++;
+            } else if (arr[mid] == 1) {
+                mid++;
+            } else {
+                swapArrayElement(arr, mid, high);
+                high--;
+            }
+        }
+
+        printArray(arr);
+    }
+
     public void mergeSortedArrays(int[] a, int[] b) {
         int n = a.length, m = b.length;
 

@@ -467,27 +467,7 @@ public class ArraysUtils extends SortingAlgorithm {
         System.out.println(ans);
     }
 
-    //Dutch National Flag Algorithm to sort array of 0,1 & 2's-------->>
-    //In this Algorithm we have three pointers low , mid & high
-    public void dutchNationalFlagAlgo(int[] arr) {
-        int n = arr.length;
-        int low = 0, mid = 0, high = n - 1;
 
-        while (mid < high) {
-            if (arr[mid] == 0) {
-                swapArrayElement(arr, low, mid);
-                low++;
-                mid++;
-            } else if (arr[mid] == 1) {
-                mid++;
-            } else {
-                swapArrayElement(arr, mid, high);
-                high--;
-            }
-        }
-
-        printArray(arr);
-    }
 
     public void sortZerosOnesTwosArray(int[] arr) {
         int count0 = 0, count1 = 0, count2 = 0;
