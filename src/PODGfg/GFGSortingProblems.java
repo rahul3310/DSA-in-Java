@@ -115,4 +115,45 @@ public class GFGSortingProblems extends ArraysUtils {
             b[ind2] = temp;
         }
     }
+
+    public int HIndex(int[] citations) {
+        int n  = citations.length;
+        int[] count = new int[n + 1]; // bucket for citation counts
+
+        // Count how many papers have 'i' citations (or more if >= n)
+        for (int c : citations){
+            if (c >= n){
+                count[n]++;
+            } else {
+                count[c]++;
+            }
+        }
+
+        int total = 0;
+        // Traverse from high to low to find the highest possible h-index
+        for (int i = n; i >= 0; i--){
+            total += count[i]; // total papers with at least 'i' citations
+
+            if (total >= i){
+                return i; // found the h-index
+            }
+        }
+
+        return 0;
+    }
+
+    public int inversionCount(int[] arr){
+        int n = arr.length;
+        int count = 0;
+        for (int i = 0; i < n-1; i++) {
+            for (int j = i+1; j < n; j++) {
+                if (arr[i]>arr[j]){
+                    count++;
+                }
+            }
+        }
+
+        return count;
+    }
+
 }
