@@ -16,8 +16,10 @@ public class Main {
         ap.printArray(a);
         ap.printArray(b);*/
 
-        System.out.println("H-Index is " + ap.HIndex(citations));
-        System.out.println("Inversion count  is " + ap.inversionCount(inversion));
+        /*System.out.println("H-Index is " + ap.HIndex(citations));
+        System.out.println("Inversion count  is " + ap.inversionCount(inversion));*/
+        int [] p = {-1, -3, -4, 2, 0, -5} ;//{1, 4, 3, 6, 7, 0};
+        ap.maxProduct(p);
 
     }
 

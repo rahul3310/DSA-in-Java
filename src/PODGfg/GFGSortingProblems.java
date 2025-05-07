@@ -117,12 +117,12 @@ public class GFGSortingProblems extends ArraysUtils {
     }
 
     public int HIndex(int[] citations) {
-        int n  = citations.length;
+        int n = citations.length;
         int[] count = new int[n + 1]; // bucket for citation counts
 
         // Count how many papers have 'i' citations (or more if >= n)
-        for (int c : citations){
-            if (c >= n){
+        for (int c : citations) {
+            if (c >= n) {
                 count[n]++;
             } else {
                 count[c]++;
@@ -131,10 +131,10 @@ public class GFGSortingProblems extends ArraysUtils {
 
         int total = 0;
         // Traverse from high to low to find the highest possible h-index
-        for (int i = n; i >= 0; i--){
+        for (int i = n; i >= 0; i--) {
             total += count[i]; // total papers with at least 'i' citations
 
-            if (total >= i){
+            if (total >= i) {
                 return i; // found the h-index
             }
         }
@@ -142,12 +142,12 @@ public class GFGSortingProblems extends ArraysUtils {
         return 0;
     }
 
-    public int inversionCount(int[] arr){
+    public int inversionCount(int[] arr) {
         int n = arr.length;
         int count = 0;
-        for (int i = 0; i < n-1; i++) {
-            for (int j = i+1; j < n; j++) {
-                if (arr[i]>arr[j]){
+        for (int i = 0; i < n - 1; i++) {
+            for (int j = i + 1; j < n; j++) {
+                if (arr[i] > arr[j]) {
                     count++;
                 }
             }
@@ -155,5 +155,56 @@ public class GFGSortingProblems extends ArraysUtils {
 
         return count;
     }
+
+    public void maxProduct(int[] arr) {
+        int minA = Integer.MIN_VALUE, minB = Integer.MIN_VALUE;
+        int maxA = Integer.MIN_VALUE, maxB = Integer.MIN_VALUE;
+        int n = arr.length;
+
+        if (n < 2) {
+            System.out.println("No pairs exists");
+            return;
+        }
+
+        if (n == 2) {
+            System.out.println(arr[0] + " " + arr[1]);
+            return;
+        }
+
+        for (int j : arr) {
+            //find first max and second max
+            if (j > maxA) {
+                maxB = maxA;
+                maxA = j;
+            } else if (j > maxB) {
+                maxB = j;
+            }
+
+            //find min and second min
+            if (j < 0 && Math.abs(j) > Math.abs(minA)) {
+                minB = minA;
+                minA = j;
+            } else if (j < 0 && Math.abs(j) > Math.abs(minB)) {
+                minB = j;
+            }
+        }
+
+        //Now compare product
+        if ((minA * minB) < (maxA * maxB)) {
+            System.out.println(maxA + " " + maxB);
+        } else {
+            System.out.println(minA + " " + minB);
+        }
+
+
+    }
+
+    public int searchRotatedSortedArray(int[] arr) {
+        int result = -1;
+
+
+        return result;
+    }
+
 
 }
