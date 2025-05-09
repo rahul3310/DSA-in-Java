@@ -199,8 +199,27 @@ public class GFGSortingProblems extends ArraysUtils {
 
     }
 
-    public int searchRotatedSortedArray(int[] arr) {
+    public int searchRotatedSortedArray(int[] arr, int key) {
         int result = -1;
+
+        int s = 0, e = arr.length - 1;
+
+        while (s < e) {
+            int mid = s + (e - s) / 2;
+
+            //If key is found
+            if (arr[mid] == key) return mid;
+
+            //If key lies in left half of the array
+            if (arr[mid] >= arr[s]) {
+                if (key >= arr[s] && key < arr[mid]) e = mid - 1;
+                else s = mid + 1;
+            } else {
+                if (key<=arr[e] && key > arr[mid]) s = mid +1;
+                else e = mid-1;
+            }
+
+        }
 
 
         return result;

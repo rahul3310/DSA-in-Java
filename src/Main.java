@@ -18,8 +18,9 @@ public class Main {
 
         /*System.out.println("H-Index is " + ap.HIndex(citations));
         System.out.println("Inversion count  is " + ap.inversionCount(inversion));*/
-        int [] p = {-1, -3, -4, 2, 0, -5} ;//{1, 4, 3, 6, 7, 0};
-        ap.maxProduct(p);
+        int [] p = {5, 6, 7, 8, 9, 10, 1, 2, 3,4} ;//{1, 4, 3, 6, 7, 0};
+        //ap.maxProduct(p);
+        System.out.println("key is found at "+ap.searchRotatedSortedArray(p,3));
 
     }
 
