@@ -196,7 +196,6 @@ public class GFGSortingProblems extends ArraysUtils {
             System.out.println(minA + " " + minB);
         }
 
-
     }
 
     public int searchRotatedSortedArray(int[] arr) {

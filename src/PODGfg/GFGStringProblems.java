@@ -138,7 +138,7 @@ public class GFGStringProblems {
 
         //decrease the count w.r.t character
         for (int i = 0; i < s2.length(); i++) {
-            count[(s2.charAt(i) - 'a')]++;    //count[s2.charAt(i) - 'a'] = count[s2.charAt(i) - 'a'] - 1;
+            count[(s2.charAt(i) - 'a')]--;    //count[s2.charAt(i) - 'a'] = count[s2.charAt(i) - 'a'] - 1;
         }
 
         //Now check if any value in count array is not 0 means that character not present in s2.
@@ -366,30 +366,30 @@ public class GFGStringProblems {
     // Function to find the smallest window in the string s consisting
     // of all the characters of string p
 
-    public  String smallestWindow(String s1, String s2) {
-        int n = s1.length(),m=s2.length();
-        int [] required =  new int[256];
-        int startInd = -1,count =0,minLen = Integer.MAX_VALUE;
+    public String smallestWindow(String s1, String s2) {
+        int n = s1.length(), m = s2.length();
+        int[] required = new int[256];
+        int startInd = -1, count = 0, minLen = Integer.MAX_VALUE;
 
         StringBuilder smallestWindow = new StringBuilder();
 
         //fill the all array which tells us the required character to be matched
 
-        for(int i = 0;i<m;i++){
+        for (int i = 0; i < m; i++) {
             required[s2.charAt(i)]++;
         }
 
         //Now apply the sliding window concept to match the characters
 
-        int l =0,r=0;
+        int l = 0, r = 0;
 
-        while(r<n){
+        while (r < n) {
 
             //If the character exist in the map means one match
             //found So increase the count and decrease the character count
             //which indicates we remove that character
 
-            if(required[s1.charAt(r)]>0) count++;
+            if (required[s1.charAt(r)] > 0) count++;
 
             required[s1.charAt(r)]--;  //we found So decrease
 
@@ -398,10 +398,10 @@ public class GFGStringProblems {
             //now the task is to find the smallest window So we shrink the window
             //by moving 'l'
 
-            while(count == m){
+            while (count == m) {
 
-                int len  = r-l+1;
-                if(len<minLen){
+                int len = r - l + 1;
+                if (len < minLen) {
                     minLen = len;
                     startInd = l;
                 }
@@ -413,7 +413,7 @@ public class GFGStringProblems {
 
                 //It indicates we still need to find that character
                 //So our count decreases
-                if(required[s1.charAt(l)]>0) count--;
+                if (required[s1.charAt(l)] > 0) count--;
 
                 l++;
             }
@@ -421,8 +421,8 @@ public class GFGStringProblems {
             r++;
         }
 
-        if(startInd!=-1){
-            for(int i = startInd ; i<(startInd+minLen);i++){
+        if (startInd != -1) {
+            for (int i = startInd; i < (startInd + minLen); i++) {
                 smallestWindow.append(s1.charAt(i));
             }
         }
@@ -430,7 +430,7 @@ public class GFGStringProblems {
         return smallestWindow.toString();
     }
 
-    public int stringToInt(String s){
+    public int stringToInt(String s) {
         int maxInt = Integer.MAX_VALUE;
         int minInt = Integer.MIN_VALUE;
         int n = s.length();
@@ -465,6 +465,86 @@ public class GFGStringProblems {
 
         return negative ? -result : result;
 
+    }
+
+    /**
+     * Add Two Binary String
+     */
+
+    public String addBinaryString(String s1, String s2) {
+        StringBuilder result = new StringBuilder();
+
+        s1 = removeLeadingZeros(s1);
+        s2 = removeLeadingZeros(s2);
+
+        int carry = 0, n = s1.length(), m = s2.length();
+
+        if (m > n) {
+            return addBinaryString(s2, s1);
+        }
+
+        int j = m - 1;
+
+        for (int i = n - 1; i >= 0; i--) {
+            int bit1 = s1.charAt(i) - '0';
+            int bitSum = bit1 + carry;
+
+            if (j >= 0) {
+                int bit2 = s2.charAt(j) - '0';
+                bitSum = bitSum + bit2;
+                j--;
+            }
+
+            carry = bitSum / 2;
+            bitSum = bitSum % 2;
+
+            result.append(bitSum);
+        }
+
+        if (carry > 0) {
+            result.append(carry);
+        }
+
+        return result.reverse().toString();
+    }
+
+    private String removeLeadingZeros(String s) {
+        String res = "";
+
+        int i = 0, n = s.length();
+
+        while (i < n && s.charAt(i) == '0') {
+            i++;
+        }
+
+        return (i == n) ? "0" : s.substring(i);
+    }
+
+    //Roman to Integer
+    /** [@Leetcode-13]*/
+    public int romanToInteger(String s) {
+        int sum = 0;
+        HashMap<Character, Integer> map = new LinkedHashMap<>();
+        map.put('I', 1);
+        map.put('V', 5);
+        map.put('X', 10);
+        map.put('L', 50);
+        map.put('C', 100);
+        map.put('D', 500);
+        map.put('M', 1000);
+
+        int n = s.length();
+        int prev = 0;
+
+        for (int i = n - 1; i >= 0; i--) {
+            int curr = map.get(s.charAt(i));
+            sum += (curr>prev)? curr : -curr;
+
+            prev = curr;
+
+        }
+
+        return sum;
     }
 
 

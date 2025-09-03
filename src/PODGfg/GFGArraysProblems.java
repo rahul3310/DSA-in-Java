@@ -51,6 +51,7 @@ public class GFGArraysProblems extends ArraysUtils {
 
     }
 
+    /** [Leetcode-31] */
     public void nextPermutation(int[] arr) {
 
         int n = arr.length;
@@ -91,6 +92,7 @@ public class GFGArraysProblems extends ArraysUtils {
     }
 
 
+    /** [Leetcode-169] */
     //Find element occurs more than n/2 times in Array
     public void majorityElement(int[] arr) {
         int majorityElement = -1;
@@ -156,7 +158,7 @@ public class GFGArraysProblems extends ArraysUtils {
 
     /**
      * Note: The answer should be returned in an increasing format.
-     */
+     * * [Leetcode-229] */
     public List<Integer> majorityElements(int[] arr) {
         ArrayList<Integer> result = new ArrayList<>();
         HashMap<Integer, Integer> hashMap = new LinkedHashMap<>();
@@ -191,7 +193,7 @@ public class GFGArraysProblems extends ArraysUtils {
         }
     }
 
-    /**
+    /** [Leetcode-121]
      * Stock Buy and Sell – Max one Transaction Allowed
      */
     public void buySellStock(int[] arr) {
@@ -443,25 +445,27 @@ public class GFGArraysProblems extends ArraysUtils {
     }
 
 
-    public int smallestMissingNumberUsingVisited(int []arr){
+    public int smallestMissingNumberUsingVisited(int[] arr) {
         int n = arr.length;
 
-        boolean [] visited = new boolean[n];
+        boolean[] visited = new boolean[n];
 
-        for(int i = 0;i<n;i++){
-            if(arr[i]>0 && arr[i]<=n){
-                visited[arr[i]-1] = true;
+        for (int i = 0; i < n; i++) {
+            if (arr[i] > 0 && arr[i] <= n) {
+                visited[arr[i] - 1] = true;
             }
         }
 
-        for(int j = 0 ;j<n;j++){
-            if(!visited[j]) return j+1;
+        for (int j = 0; j < n; j++) {
+            if (!visited[j]) return j + 1;
         }
 
-        return n+1;
+        return n + 1;
     }
 
-    /** @LeetCode-2161 Partition Array According to Given Pivot*/
+    /**
+     * @LeetCode-2161 Partition Array According to Given Pivot
+     */
     public int[] pivotArray(int[] nums, int pivot) {
 
         List<Integer> smaller = new ArrayList<>();
@@ -489,7 +493,54 @@ public class GFGArraysProblems extends ArraysUtils {
 
     }
 
+    /**
+     * Count Inversions
+     * Inversion Count: For an array, inversion count indicates how far (or close) the array is from being sorted. If the array is already sorted then the inversion count is 0.
+     * If an array is sorted in the reverse order then the inversion count is the maximum.
+     */
+    public int countInversions(int[] arr) {
+        int n = arr.length;
+        int countIn = 0;
 
+        int i = 0, j = n - 1;
+        while (i < n) {
+            if (arr[i] > arr[j]) {
+                countIn++;
+            }
+        }
+
+        return countIn;
+    }
+
+    public void mergeTwoSortedArrayWithoutExtraSpace(int[] a, int[] b) {
+
+        int n = a.length, m = b.length;
+
+        // Iterate over every element in a[]
+        for (int i = 0; i < n; i++) {
+            if (a[i] > b[0]) {
+                // Swap the element from a[] to b[]
+                int temp = a[i];
+                a[i] = b[0];
+                b[0] = temp;
+
+                // Now, insert b[0] into its correct position in b[] using insertion sort
+                int first = b[0];
+                int k = 1;
+
+                // Shift elements in b[] to insert b[0] at the correct place
+                while (k < m && b[k] < first) {
+                    b[k - 1] = b[k];
+                    k++;
+                }
+                b[k - 1] = first;
+            }
+        }
+
+        printArray(a);
+        printArray(b);
+
+    }
 
 
 }

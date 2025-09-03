@@ -218,7 +218,7 @@ public class CollectionFramework {
      * Java TreeMap maintains ascending order.
      */
     public void printTreeMap(){
-        TreeMap<Integer,String> map=new TreeMap<Integer,String>();
+        TreeMap<Integer,String> map= new TreeMap<>();
         map.put(100,"Amit");
         map.put(102,"Ravi");
         map.put(101,"Vijay");

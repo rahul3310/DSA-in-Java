@@ -1,9 +1,11 @@
 import PODGfg.GFGSortingProblems;
+import PODGfg.GFGStringProblems;
 
 public class Main {
     public static void main(String[] args) {
 
         GFGSortingProblems ap = new GFGSortingProblems();
+        GFGStringProblems sp = new GFGStringProblems();
 
         int[] a = {2, 4, 7, 10};
         int[] b = {2, 3};
@@ -18,8 +20,11 @@ public class Main {
 
         /*System.out.println("H-Index is " + ap.HIndex(citations));
         System.out.println("Inversion count  is " + ap.inversionCount(inversion));*/
-        int [] p = {-1, -3, -4, 2, 0, -5} ;//{1, 4, 3, 6, 7, 0};
-        ap.maxProduct(p);
+      /*  int [] p = {-1, -3, -4, 2, 0, -5} ;//{1, 4, 3, 6, 7, 0};
+        ap.maxProduct(p);*/
+
+
+        System.out.println("sum is "+ sp.romanToInteger("MCMXCIV"));
 
     }
 
